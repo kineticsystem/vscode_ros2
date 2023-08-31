@@ -13,7 +13,7 @@ For the purpose of this guide, it is presumed that Visual Studio Code has alread
 To open an existing ROS2 repository, initiate a terminal and navigate to the src directory within your ROS2 workspace. It is crucial to ensure you are in the src directory, rather than the root workspace directory. For instance:
 
 ```
-~/user/ros2_epick_gripper/src
+~/user/my_project/src
 ```
 
 Execute the following command to open this directory in VSCode:
@@ -43,7 +43,31 @@ c_cpp_properties.json
 settings.json
 ```
 
-Within `c_cpp_properties.json`, consider updating the `cppStandard` field to `c++17`.
+Follwing a working example of `c_cpp_properties.json`:
+
+```
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "${workspaceFolder}/**",
+        "/opt/ros/humble/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++17"
+    }
+  ],
+  "version": 4
+}
+```
 
 When you open a C++ file, VSCode may prompt you to install the "C/C++ Extension Pack". Please comply with this request.
 
