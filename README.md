@@ -107,7 +107,7 @@ At this stage, no build task has been defined. To rectify this, create a `tasks.
 
 To execute a build, navigate to the "Run build task..." option within the Terminal menu. The system will automatically locate and initiate the build task as specified in the aforementioned `tasks.json` file. Alternatively, use the keyboard shortcut:
 
-`Ctrl + Shift + B
+`Ctrl + Shift + B`
 
 ## Debugging
 
