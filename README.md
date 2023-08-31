@@ -1,51 +1,57 @@
 # VSCode and ROS2
 
-This document describes how to configure VSCode to build and run ROS2 projects.
+This documentation outlines the procedures for setting up Visual Studio Code (VSCode) to effectively build and execute ROS2 projects.
 
-## Open VSCode
+## Initialization of Visual Studio Code
 
-We assume you've installed VSCode without any additional extensions. In Ubuntu extensions are usually saved under the folder:
+For the purpose of this guide, it is presumed that Visual Studio Code has already been installed on your system without any additional extensions. In an Ubuntu environment, the extensions are commonly stored in the following directory:
 
 ```
 ~/.vscode
 ```
 
-To open an existing ROS2 repo, launch a terminal and move into your project workspace source folder. It must be the source folder, not the top workspace folder. For example
+To open an existing ROS2 repository, initiate a terminal and navigate to the src directory within your ROS2 workspace. It is crucial to ensure you are in the src directory, rather than the root workspace directory. For instance:
 
 ```
 ~/user/ros2_epick_gripper/src
 ```
 
-Then, run the following command which will open that folder in VSCode.
+Execute the following command to open this directory in VSCode:
 
 ```
 code .
 ```
 
-Once VSCode is up, you must to install Microsoft ROS extension and restart the editor.
+Upon launching VSCode, proceed to install the Microsoft ROS extension, followed by a restart of the editor.
 
 <img width="80px" src="svg/ros_extension.svg">
 
-This extension installs some dependencies like C/C++ and Python extensions.
+This extension will facilitate the installation of requisite dependencies such as the C/C++ and Python extensions.
 
 <img width="80px" src="svg/cpp_extension.svg"><img width="80px" src="svg/python_extension.svg">
 
-You may have noticed that VSCode create a folder .vscode with two files:
+## Configuration Files
+
+You may observe that VSCode generates a `.vscode` folder containing two configuration files:
 
 ```
 c_cpp_properties.json
 settings.json
 ```
 
-In the first file you may want to change the field `cppStandard` to `c++17`.
+Within `c_cpp_properties.json`, consider updating the `cppStandard` field to `c++17`.
 
-When you open a C++ file, VSCode may ask you to install the "C/C++ Extension pack". Please install it.
+When you open a C++ file, VSCode may prompt you to install the "C/C++ Extension Pack". Please comply with this request.
 
-You can easily navigate between cpp and hpp files using the keyboard shortcut
+## Navigation and Shortcuts
 
-`<alt> + o`
+You may conveniently toggle between `.cpp` and `.hpp` files using the following keyboard shortcut:
 
-At the moment, you don't have a build task set up. In the `.vscode` folder you must create a file called `tasks.json` with the following content:
+`Alt + O`
+
+## Build Task Configuration
+
+At this stage, no build task has been defined. To rectify this, create a `tasks.json` file within the `.vscode` folder and populate it with the following content:
 
 ```
 {
@@ -65,11 +71,10 @@ At the moment, you don't have a build task set up. In the `.vscode` folder you m
 }
 ```
 
-If you want to buils your repo, the only thing you have to do is to select "Run build task..." from the Terminal menu. The task will immediately find the build task in the above confuguration file. You can also use
+To execute a build, navigate to the "Run build task..." option within the Terminal menu. The system will automatically locate and initiate the build task as specified in the aforementioned `tasks.json` file. Alternatively, use the keyboard shortcut:
 
-`<ctrl> + <shift> + b`
+`Ctrl + Shift + B
 
+## Additional Resources
 
-## External links
-
-There is a good introduction to VSCode and ROS2 here: https://www.youtube.com/watch?v=hf76VY0a5Fk
+For an in-depth introduction to ROS2 and VSCode, you may refer to the following video tutorial: https://www.youtube.com/watch?v=hf76VY0a5Fk
