@@ -30,7 +30,9 @@ This extension will facilitate the installation of requisite dependencies such a
 
 <img width="80px" src="svg/cpp_extension.svg"><img width="80px" src="svg/python_extension.svg">
 
-Another extension that you may want to install manually is CMake from twsx.
+VSCode will prompt you to install the "C/C++ Extension Pack" which provides intellisense and C++ file navigation. Please comply with this request. It will install the CMake extension from twsx too.
+
+You may need to enable intellisense in your VSCode Preferences Settings. 
 
 <img width="80px" src="svg/cmake_extension.svg">
 
@@ -68,8 +70,6 @@ Follwing a working example of `c_cpp_properties.json`:
   "version": 4
 }
 ```
-
-When you open a C++ file, VSCode may prompt you to install the "C/C++ Extension Pack". Please comply with this request.
 
 ## Navigation and Shortcuts
 
@@ -109,9 +109,51 @@ To execute a build, navigate to the "Run build task..." option within the Termin
 
 `Ctrl + Shift + B
 
-## TODO
+## Debugging
 
-* Execute and debug GTests.
+Another useful extention is "C++ TestMate" to launch and debug GTests directly within VSCode.
+
+<img width="80px" src="svg/testmate_extension.svg">
+
+Please note that for this extension to work correctly, you may need to source your ROS repository before starting up VSCode from the terminal. 
+
+```source install/setup.bash; code .```
+
+To debug your test you must create a `launch.json` file inside your `.vscode` directory. The file is automatically created for you when you debug your first test. 
+
+```
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "enter program name, for example ${workspaceFolder}/a.out",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}
+```
+
+## TODO
 
 * Execute and debug Python launch files.
 
