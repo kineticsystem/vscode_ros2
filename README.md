@@ -75,6 +75,16 @@ To execute a build, navigate to the "Run build task..." option within the Termin
 
 `Ctrl + Shift + B
 
+## TODO
+
+* Execute and debug GTests.
+
+* Execute and debug Python launch files.
+
+* Remote developing.
+
+* Developing with Docker.
+
 ## Additional Resources
 
 For an in-depth introduction to ROS2 and VSCode, you may refer to the following video tutorial: https://www.youtube.com/watch?v=hf76VY0a5Fk
