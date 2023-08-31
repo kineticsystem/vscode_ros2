@@ -10,10 +10,10 @@ For the purpose of this guide, it is presumed that Visual Studio Code has alread
 ~/.vscode
 ```
 
-To open an existing ROS2 repository, initiate a terminal and navigate to the src directory within your ROS2 workspace. It is crucial to ensure you are in the src directory, rather than the root workspace directory. For instance:
+To open an existing ROS2 repository, initiate a terminal and navigate to your ROS2 workspace. It is crucial to ensure you are in the root workspace directory. For instance:
 
 ```
-~/user/my_project/src
+~/user/my_project
 ```
 
 Execute the following command to open this directory in VSCode:
@@ -83,19 +83,25 @@ At this stage, no build task has been defined. To rectify this, create a `tasks.
 
 ```
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "build",
-      "type": "shell",
-      "command": "colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Debug'"
-    },
-    {
-      "label": "test",
-      "type": "shell",
-      "command": "colcon test && colcon test-result"
-    }
-  ]
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug --symlink-install --event-handlers log-"
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "rm -rf build/ install/ log/",
+            "problemMatcher": []
+        },
+        {
+            "label": "test",
+            "type": "shell",
+            "command": "colcon test && colcon test-result"
+        }
+    ]
 }
 ```
 
