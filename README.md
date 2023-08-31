@@ -30,6 +30,10 @@ This extension will facilitate the installation of requisite dependencies such a
 
 <img width="80px" src="svg/cpp_extension.svg"><img width="80px" src="svg/python_extension.svg">
 
+Another extension that you may want to install manually is CMake from twsx.
+
+<img width="80px" src="svg/cmake_extension.svg">
+
 ## Configuration Files
 
 You may observe that VSCode generates a `.vscode` folder containing two configuration files:
@@ -87,4 +91,7 @@ To execute a build, navigate to the "Run build task..." option within the Termin
 
 ## Additional Resources
 
-For an in-depth introduction to ROS2 and VSCode, you may refer to the following video tutorial: https://www.youtube.com/watch?v=hf76VY0a5Fk
+For additional information about ROS2 and VSCode, you may refer to the following tutorials:
+
+* https://www.youtube.com/watch?v=hf76VY0a5Fk
+* https://www.allisonthackston.com/articles/vscode-docker-ros2.html
