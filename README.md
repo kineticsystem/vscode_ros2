@@ -82,7 +82,7 @@ At this stage, no build task has been defined. To rectify this, create a `tasks.
         {
             "label": "build",
             "type": "shell",
-            "command": "source /opt/ros/humble/setup.bash; colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug --symlink-install --event-handlers log-"
+            "command": "colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug --symlink-install --event-handlers log-"
         },
         {
             "label": "clean",
@@ -99,7 +99,7 @@ At this stage, no build task has been defined. To rectify this, create a `tasks.
 }
 ```
 
-Please note that the follwong line is required to execute Colcon from within VSCode, and you must updated it accordingly to your ROS2 distribution:
+Remember to add the following line to the remote `~/.bashrc` file to source your ROS2 distribution. In this way you will be able to execute Colcon commands from within VSCode:
 
 `source /opt/ros/humble/setup.bash`
 
