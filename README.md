@@ -10,16 +10,10 @@ For the purpose of this guide, it is presumed that Visual Studio Code has alread
 ~/.vscode
 ```
 
-To open an existing ROS2 repository, initiate a terminal and navigate to your ROS2 workspace. It is crucial to ensure you are in the root workspace directory. For instance:
+Run VSCode and open the root of your repository where `build`, `install`, `log` and `src` folders are usually located. For instance:
 
 ```
 ~/user/my_project
-```
-
-Execute the following command to open this directory in VSCode:
-
-```
-code .
 ```
 
 Upon launching VSCode, proceed to install the Microsoft ROS extension, followed by a restart of the editor.
@@ -32,7 +26,7 @@ This extension will facilitate the installation of requisite dependencies such a
 
 VSCode will prompt you to install the "C/C++ Extension Pack" which provides intellisense and C++ file navigation. Please comply with this request. It will install the CMake extension from twsx too.
 
-You may need to enable intellisense in your VSCode Preferences Settings. 
+You may need to enable intellisense in your VSCode Preferences Settings.
 
 <img width="80px" src="svg/cmake_extension.svg">
 
@@ -88,7 +82,7 @@ At this stage, no build task has been defined. To rectify this, create a `tasks.
         {
             "label": "build",
             "type": "shell",
-            "command": "colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug --symlink-install --event-handlers log-"
+            "command": "source /opt/ros/humble/setup.bash; colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug --symlink-install --event-handlers log-"
         },
         {
             "label": "clean",
@@ -115,11 +109,11 @@ Another useful extention is "C++ TestMate" to launch and debug GTests directly w
 
 <img width="80px" src="svg/testmate_extension.svg">
 
-Please note that for this extension to work correctly, you may need to source your ROS repository before starting up VSCode from the terminal. 
+Please note that for this extension to work correctly, you may need to source your ROS repository before starting up VSCode from the terminal.
 
-```source install/setup.bash; code .```
+`source install/setup.bash; code .`
 
-To debug your test you must create a `launch.json` file inside your `.vscode` directory. The file is automatically created for you when you debug your first test. 
+To debug your test you must create a `launch.json` file inside your `.vscode` directory. The file is automatically created for you when you debug your first test.
 
 ```
 {
@@ -153,17 +147,25 @@ To debug your test you must create a `launch.json` file inside your `.vscode` di
 }
 ```
 
+## Remote development over SSH
+
+VSCode can be used to develop remotely over SSH. You must install an extension called Microsoft Remote SSH.
+
+<img width="80px" src="svg/ssh_extension.svg">
+
+Open the command palette and type: "Remote-SSH: Connect to Host...".
+
+If you want to run Colcon from VSCode, remember to always open the root of your repository where `build`, `install`, `log` and `src` folders are usually located. For instance:
+
 ## TODO
 
-* Execute and debug Python launch files.
+- Execute and debug Python launch files.
 
-* Remote developing.
-
-* Developing with Docker.
+- Developing with Docker.
 
 ## Additional Resources
 
 For additional information about ROS2 and VSCode, you may refer to the following tutorials:
 
-* https://www.youtube.com/watch?v=hf76VY0a5Fk
-* https://www.allisonthackston.com/articles/vscode-docker-ros2.html
+- https://www.youtube.com/watch?v=hf76VY0a5Fk
+- https://www.allisonthackston.com/articles/vscode-docker-ros2.html
