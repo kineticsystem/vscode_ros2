@@ -107,8 +107,6 @@ To execute a build, navigate to the "Run build task..." option within the Termin
 
 `Ctrl + Shift + B`
 
-PLe
-
 ## Debugging
 
 Another useful extention is "C++ TestMate" to launch and debug GTests directly within VSCode.
