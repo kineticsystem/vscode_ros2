@@ -99,9 +99,15 @@ At this stage, no build task has been defined. To rectify this, create a `tasks.
 }
 ```
 
+Please note that the follwong line is required to execute Colcon from within VSCode, and you must updated it accordingly to your ROS2 distribution:
+
+`source /opt/ros/humble/setup.bash`
+
 To execute a build, navigate to the "Run build task..." option within the Terminal menu. The system will automatically locate and initiate the build task as specified in the aforementioned `tasks.json` file. Alternatively, use the keyboard shortcut:
 
 `Ctrl + Shift + B`
+
+PLe
 
 ## Debugging
 
