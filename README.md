@@ -161,11 +161,15 @@ Open the command palette and type: "Remote-SSH: Connect to Host...".
 
 If you want to run Colcon from VSCode, remember to always open the root of your repository where `build`, `install`, `log` and `src` folders are usually located. For instance:
 
+## Development on Docker
+
+VSCode can be used to develop on Docker. You must install an extension called Dev Containers.
+
+<img width="80px" src="svg/dev_container_extension.svg">
+
 ## TODO
 
 - Execute and debug Python launch files.
-
-- Developing with Docker.
 
 ## Additional Resources
 
