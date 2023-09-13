@@ -2,7 +2,6 @@
 
 This documentation outlines the procedures for setting up Visual Studio Code (VSCode) to effectively build and execute ROS2 projects.
 
-<img height="70px" src="svg/ros_logo.svg">
 <img height="70px" src="svg/visual_studio_code.svg">
 
 ## Initialization of Visual Studio Code
