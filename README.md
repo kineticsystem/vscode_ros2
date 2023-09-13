@@ -1,6 +1,9 @@
-# VSCode and ROS2
+# ROS2 and VSCode
 
 This documentation outlines the procedures for setting up Visual Studio Code (VSCode) to effectively build and execute ROS2 projects.
+
+<img height="70px" src="svg/ros_logo.svg">
+<img height="70px" src="svg/visual_studio_code.svg">
 
 ## Initialization of Visual Studio Code
 
@@ -18,17 +21,17 @@ Run VSCode and open the root of your repository where `build`, `install`, `log` 
 
 Upon launching VSCode, proceed to install the Microsoft ROS extension, followed by a restart of the editor.
 
-<img width="80px" src="svg/ros_extension.svg">
+<img height="80px" src="svg/ros_extension.svg">
 
 This extension will facilitate the installation of requisite dependencies such as the C/C++ and Python extensions.
 
-<img width="80px" src="svg/cpp_extension.svg"><img width="80px" src="svg/python_extension.svg">
+<img height="80px" src="svg/cpp_extension.svg"><img height="80px" src="svg/python_extension.svg">
 
 VSCode will prompt you to install the "C/C++ Extension Pack" which provides intellisense and C++ file navigation. Please comply with this request. It will install the CMake extension from twsx too.
 
 You may need to enable intellisense in your VSCode Preferences Settings.
 
-<img width="80px" src="svg/cmake_extension.svg">
+<img height="80px" src="svg/cmake_extension.svg">
 
 ## Configuration Files
 
@@ -111,7 +114,7 @@ To execute a build, navigate to the "Run build task..." option within the Termin
 
 Another useful extention is "C++ TestMate" to launch and debug GTests directly within VSCode.
 
-<img width="80px" src="svg/testmate_extension.svg">
+<img height="80px" src="svg/testmate_extension.svg">
 
 Please note that for this extension to work correctly, you may need to source your ROS repository before starting up VSCode from the terminal.
 
@@ -155,7 +158,7 @@ To debug your test you must create a `launch.json` file inside your `.vscode` di
 
 VSCode can be used to develop remotely over SSH. You must install an extension called Microsoft Remote SSH.
 
-<img width="80px" src="svg/ssh_extension.svg">
+<img height="80px" src="svg/ssh_extension.svg">
 
 Open the command palette and type: "Remote-SSH: Connect to Host...".
 
@@ -165,7 +168,7 @@ If you want to run Colcon from VSCode, remember to always open the root of your 
 
 VSCode can be used to develop on Docker. You must install an extension called Dev Containers.
 
-<img width="80px" src="svg/dev_container_extension.svg">
+<img height="80px" src="svg/dev_container_extension.svg">
 
 ## TODO
 
