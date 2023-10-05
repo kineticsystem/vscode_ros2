@@ -22,7 +22,7 @@ Upon launching VSCode, proceed to install the Microsoft ROS extension, followed 
 
 <img height="80px" src="svg/ros_extension.svg">
 
-This extension will facilitate the installation of requisite dependencies such as the C/C++ and Python extensions.
+This extension will facilitate the installation of requisite dependencies such as Microsoft C/C++ and Microsoft Python extensions.
 
 <img height="80px" src="svg/cpp_extension.svg"><img height="80px" src="svg/python_extension.svg">
 
@@ -165,11 +165,17 @@ Open the command palette and type: "Remote-SSH: Connect to Host...".
 
 ## Development on Docker
 
-VSCode can be used to develop on Docker. You must install an extension called Dev Containers which you can use to connect to running containers. You can easily install your local VSCode extensions into the container.
+VSCode can be used to develop on Docker. You must install an extension called Microsoft Dev Containers which you can use to connect to running containers. You can easily install your local VSCode extensions into the container.
 
 <img height="80px" src="svg/dev_container_extension.svg">
 
 More information here: https://code.visualstudio.com/docs/devcontainers/attach-container
+
+## Additional extensions
+
+**Microsoft Pylance**: This is a powerful tool that enhances the Python development experience in Visual Studio Code by providing tools for code analysis, error checking, code navigation, and code completion. 
+
+**Microsoft Back Formatter:** An automatic Python code formatter.
 
 ## TODO
 
