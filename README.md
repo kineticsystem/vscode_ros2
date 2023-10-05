@@ -169,6 +169,8 @@ VSCode can be used to develop on Docker. You must install an extension called De
 
 <img height="80px" src="svg/dev_container_extension.svg">
 
+More information here: https://code.visualstudio.com/docs/devcontainers/attach-container
+
 ## TODO
 
 - Execute and debug Python launch files.
