@@ -1,6 +1,6 @@
 # ROS2 and VSCode
 
-This documentation outlines the procedures for setting up Visual Studio Code (VSCode) to effectively build and execute ROS2 projects.
+This documentation outlines the procedures for setting up Visual Studio Code (VSCode) to build and execute ROS2 projects effectively.
 
 <img height="70px" src="svg/visual_studio_code.svg">
 
@@ -26,11 +26,11 @@ This extension will facilitate the installation of requisite dependencies such a
 
 <img height="80px" src="svg/cpp_extension.svg"><img height="80px" src="svg/python_extension.svg">
 
-VSCode will prompt you to install the "C/C++ Extension Pack" which provides intellisense and C++ file navigation. Please comply with this request. It will install the CMake extension from twsx too.
-
-You may need to enable intellisense in your VSCode Preferences Settings.
+Install the "C/C++ Extension Pack" which provides Intellisense and C++ file navigation. This will install the CMake extension from twsx too.
 
 <img height="80px" src="svg/cmake_extension.svg">
+
+You may need to enable Intellisense in your VSCode Preferences Settings.
 
 ## Configuration Files
 
@@ -41,7 +41,7 @@ c_cpp_properties.json
 settings.json
 ```
 
-Follwing a working example of `c_cpp_properties.json`:
+Following is a working example of `c_cpp_properties.json`:
 
 ```
 {
@@ -75,6 +75,8 @@ You may conveniently toggle between `.cpp` and `.hpp` files using the following 
 
 ## Build Task Configuration
 
+If you want to run Colcon from VSCode, always remember to open the root of your repository where `build`, `install`, `log` and `src` folders are usually located.
+
 At this stage, no build task has been defined. To rectify this, create a `tasks.json` file within the `.vscode` folder and populate it with the following content:
 
 ```
@@ -101,17 +103,17 @@ At this stage, no build task has been defined. To rectify this, create a `tasks.
 }
 ```
 
-Remember to modify the following line accordingly to your ROS2 distribution. In this way you will be able to execute Colcon commands from within VSCode:
+Remember to modify the following line according to your ROS2 distribution. In this way, you will be able to execute Colcon commands from within VSCode:
 
 `source /opt/ros/humble/setup.bash`
 
-To execute a build, navigate to the "Run build task..." option within the Terminal menu. The system will automatically locate and initiate the build task as specified in the aforementioned `tasks.json` file. Alternatively, use the keyboard shortcut:
+To execute a build, navigate to the "Run build task..." option within the Terminal menu. The system will automatically locate and initiate the build task specified in the aforementioned `tasks.json` file. Alternatively, use the keyboard shortcut:
 
 `Ctrl + Shift + B`
 
 ## Debugging
 
-Another useful extention is "C++ TestMate" to launch and debug GTests directly within VSCode.
+Another useful extension is "C++ TestMate" to launch and debug GTests directly within VSCode.
 
 <img height="80px" src="svg/testmate_extension.svg">
 
@@ -119,7 +121,7 @@ Please note that for this extension to work correctly, you may need to source yo
 
 `source install/setup.bash; code .`
 
-To debug your test you must create a `launch.json` file inside your `.vscode` directory. The file is automatically created for you when you debug your first test.
+To debug your test, you must create a `launch.json` file inside your `.vscode` directory. The file is automatically created for you when you debug your first test.
 
 ```
 {
@@ -155,17 +157,15 @@ To debug your test you must create a `launch.json` file inside your `.vscode` di
 
 ## Remote development over SSH
 
-VSCode can be used to develop remotely over SSH. You must install an extension called Microsoft Remote SSH.
+VSCode can be used to develop remotely over SSH. You must install an extension called Microsoft Remote SSH. This extension will also add a button on the left toolbar to display all available Docker containers.
 
 <img height="80px" src="svg/ssh_extension.svg">
 
 Open the command palette and type: "Remote-SSH: Connect to Host...".
 
-If you want to run Colcon from VSCode, remember to always open the root of your repository where `build`, `install`, `log` and `src` folders are usually located. For instance:
-
 ## Development on Docker
 
-VSCode can be used to develop on Docker. You must install an extension called Dev Containers.
+VSCode can be used to develop on Docker. You must install an extension called Dev Containers which you can use to connect to running containers. You can easily install your local VSCode extensions into the container.
 
 <img height="80px" src="svg/dev_container_extension.svg">
 
