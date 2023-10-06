@@ -32,16 +32,17 @@ Restart VSCode and open the root of your ROS2 project repository where `build`, 
 ~/user/my_project
 ```
 
-## Configuration Files
+## Working in C++
 
-You may observe that VSCode generates a `.vscode` folder containing two configuration files:
+If you open an existing ROS2 project that contains C++ source code, you may observe that VSCode generates a `.vscode` folder containing two configuration files:
 
 ```
 c_cpp_properties.json
 settings.json
 ```
 
-Following is a working example of `c_cpp_properties.json`:
+If `c_cpp_properties.json` is not created, you can create a new one by opening the command palette and typing "C++: Edit Configurations (UI)".
+Update it to match roughly the following content:
 
 ```
 {
@@ -67,13 +68,13 @@ Following is a working example of `c_cpp_properties.json`:
 }
 ```
 
-## Navigation and Shortcuts
+### Navigation and Shortcuts
 
 You may conveniently toggle between `.cpp` and `.hpp` files using the following keyboard shortcut:
 
 `Alt + O`
 
-## Build Task Configuration
+### Build Task Configuration
 
 If you want to run Colcon from VSCode, always remember to open the root of your repository where `build`, `install`, `log` and `src` folders are usually located.
 
@@ -111,7 +112,7 @@ To execute a build, navigate to the "Run build task..." option within the Termin
 
 `Ctrl + Shift + B`
 
-## Debugging
+### Debugging
 
 Another useful extension is "C++ TestMate" to launch and debug GTests directly within VSCode.
 
@@ -151,6 +152,27 @@ To debug your test, you must create a `launch.json` file inside your `.vscode` d
                 }
             ]
         }
+    ]
+}
+```
+
+## Working in Python
+
+When you open an existing ROS2 Python project, IntelliSense may not find ROS2 Python modules, or your local package modules. To solve the issue, create a file `settings.json` with a content matching roughly the following:
+
+```json
+{
+    "python.autoComplete.extraPaths": [
+        "/opt/ros/humble/lib/python3.10/site-packages", 
+        "/opt/ros/humble/local/lib/python3.10/dist-packages",
+        "/my_project/build/package1",
+        "/my_project/build/package2"
+    ],
+    "python.analysis.extraPaths": [
+        "/opt/ros/humble/lib/python3.10/site-packages", 
+        "/opt/ros/humble/local/lib/python3.10/dist-packages",
+        "/my_project/build/package1",
+        "/my_project/build/package2"
     ]
 }
 ```
