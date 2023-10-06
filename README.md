@@ -12,12 +12,6 @@ For the purpose of this guide, it is presumed that Visual Studio Code has alread
 ~/.vscode
 ```
 
-Run VSCode and open the root of your repository where `build`, `install`, `log` and `src` folders are usually located. For instance:
-
-```
-~/user/my_project
-```
-
 Upon launching VSCode, proceed to install the Microsoft ROS extension, followed by a restart of the editor.
 
 <img height="80px" src="svg/ros_extension.svg">
@@ -31,6 +25,12 @@ Install the "C/C++ Extension Pack" which provides Intellisense and C++ file navi
 <img height="80px" src="svg/cmake_extension.svg">
 
 You may need to enable Intellisense in your VSCode Preferences Settings.
+
+Restart VSCode and open the root of your ROS2 project repository where `build`, `install`, `log` and `src` folders are usually located. For instance:
+
+```
+~/user/my_project
+```
 
 ## Configuration Files
 
