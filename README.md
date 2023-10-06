@@ -44,7 +44,7 @@ settings.json
 If `c_cpp_properties.json` is not created, you can create a new one by opening the command palette and typing "C++: Edit Configurations (UI)".
 Update it to match roughly the following content:
 
-```
+```json
 {
   "configurations": [
     {
@@ -80,7 +80,7 @@ If you want to run Colcon from VSCode, always remember to open the root of your 
 
 At this stage, no build task has been defined. To rectify this, create a `tasks.json` file within the `.vscode` folder and populate it with the following content:
 
-```
+```json
 {
     "version": "2.0.0",
     "tasks": [
@@ -124,7 +124,7 @@ Please note that for this extension to work correctly, you may need to source yo
 
 To debug your test, you must create a `launch.json` file inside your `.vscode` directory. The file is automatically created for you when you debug your first test.
 
-```
+```json
 {
     "version": "0.2.0",
     "configurations": [
