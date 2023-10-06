@@ -197,7 +197,7 @@ More information here: https://code.visualstudio.com/docs/devcontainers/attach-c
 
 **Microsoft Pylance**: This is a powerful tool that enhances the Python development experience in Visual Studio Code by providing tools for code analysis, error checking, code navigation, and code completion. 
 
-**Microsoft Back Formatter:** An automatic Python code formatter.
+**Microsoft Black Formatter:** An automatic Python code formatter.
 
 ## TODO
 
