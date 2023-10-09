@@ -195,11 +195,13 @@ More information here: https://code.visualstudio.com/docs/devcontainers/attach-c
 
 ## Additional extensions
 
+**Astral Software Ruff:** Support for the Ruff linter.
+
 **Microsoft Pylance**: This is a powerful tool that enhances the Python development experience in Visual Studio Code by providing tools for code analysis, error checking, code navigation, and code completion. 
 
 **Microsoft Black Formatter:** An automatic Python code formatted.
 
-**Astral Software Ruff:** Support for the Ruff linter.
+**UMLet:** Draw UML diagram inside VSCode.
 
 ## TODO
 
