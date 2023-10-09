@@ -199,9 +199,11 @@ More information here: https://code.visualstudio.com/docs/devcontainers/attach-c
 
 **Error Lens:** better display errors in the Python code.
 
-**Microsoft Pylance**: This is a powerful tool that enhances the Python development experience in Visual Studio Code by providing tools for code analysis, error checking, code navigation, and code completion. 
-
 **Microsoft Black Formatter:** An automatic Python code formatted.
+
+**Microsoft Pylint**:  Support for the Pylint linter.
+
+**Microsoft Pylance**: This is a powerful tool that enhances the Python development experience in Visual Studio Code by providing tools for code analysis, error checking, code navigation, and code completion. 
 
 **UMLet:** Draw UML diagram inside VSCode.
 
