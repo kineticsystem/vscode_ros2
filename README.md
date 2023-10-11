@@ -74,11 +74,11 @@ You may conveniently toggle between `.cpp` and `.hpp` files using the following 
 
 `Alt + O`
 
-### Build Task Configuration
+### Colcon build
 
 If you want to run Colcon from VSCode, always remember to open the root of your repository where `build`, `install`, `log` and `src` folders are usually located.
 
-At this stage, no build task has been defined. To rectify this, create a `tasks.json` file within the `.vscode` folder and populate it with the following content:
+At this stage, no task has been defined. To rectify this, create a `tasks.json` file within the `.vscode` folder and populate it with the following content:
 
 ```json
 {
@@ -176,6 +176,41 @@ When you open an existing ROS2 Python project, IntelliSense may not find ROS2 Py
     ]
 }
 ```
+
+### Debugging Python files
+
+To debug a selected Python file, you must create a `launch.json` file inside your `.vscode` directory. The file is automatically created for you when you debug your first test with the following content.
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
+```
+
+To debug a ROS2 launch file, you must add this code at its end:
+
+```python
+def main():
+    ls = launch.LaunchService()
+    ld = generate_launch_description()
+    ls.include_launch_description(ld)
+    return ls.run()
+
+if __name__ == '__main__':
+    main()
+```
+
+With this code, we transform the launch file into a standard executable file that we can debug as a normal python file. 
 
 ## Remote development over SSH
 
