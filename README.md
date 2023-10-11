@@ -210,7 +210,33 @@ if __name__ == '__main__':
     main()
 ```
 
-With this code, we transform the launch file into a standard executable file that we can debug as a normal python file. 
+With this code, we transform the launch file into a standard executable file that we can debug as a normal python file.
+
+Using an "opaque function" allows you to debug the values of launch parameters. However, together with the previous change, you'll need to modify the launch file as demonstrated in the following example.
+
+```python
+def launch_setup(context, *args, **kwargs):
+    my_param = LaunchConfiguration("param_name")
+
+def generate_launch_description():
+    return LaunchDescription(
+        [
+            DeclareLaunchArgument(
+                "param_name",
+                default_value="param_value",
+                description=("param_description"),
+            ),
+            ...,
+            OpaqueFunction(function=launch_setup),
+        ]
+    )
+```
+
+In VSCode, we can add a breakpoint and display the content of this variable with a watch:
+
+```python
+my_param.perform(context)
+```
 
 ## Remote development over SSH
 
