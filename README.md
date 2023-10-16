@@ -209,6 +209,7 @@ To debug a selected Python file, you must create a `launch.json` file inside you
             "type": "python",
             "request": "launch",
             "program": "${file}",
+            "args": [""], // Only if you need parameters
             "console": "integratedTerminal",
             "justMyCode": true
         }
