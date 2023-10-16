@@ -1,8 +1,27 @@
 # ROS2 and VSCode
 
+<img height="70px" src="svg/visual_studio_code.svg">
+
 This documentation outlines the procedures for setting up Visual Studio Code (VSCode) to build and execute ROS2 projects effectively.
 
-<img height="70px" src="svg/visual_studio_code.svg">
+## Table of Contents
+
+- [ROS2 and VSCode](#ros2-and-vscode)
+  - [Table of Contents](#table-of-contents)
+  - [Initialization of Visual Studio Code](#initialization-of-visual-studio-code)
+  - [Working in C++](#working-in-c)
+    - [Navigation and Shortcuts](#navigation-and-shortcuts)
+    - [Colcon build](#colcon-build)
+    - [Debugging tests](#debugging-tests)
+  - [Working in Python](#working-in-python)
+    - [Debugging Python files](#debugging-python-files)
+  - [Remote development over SSH](#remote-development-over-ssh)
+  - [Development on Docker](#development-on-docker)
+  - [Additional extensions](#additional-extensions)
+    - [General](#general)
+    - [Python](#python)
+  - [TODO](#todo)
+  - [Additional Resources](#additional-resources)
 
 ## Initialization of Visual Studio Code
 
@@ -256,17 +275,31 @@ More information here: https://code.visualstudio.com/docs/devcontainers/attach-c
 
 ## Additional extensions
 
-**Astral Software Ruff:** Support for the Ruff linter.
+### General
 
-**Error Lens:** better display errors in the Python code.
+* **Back & Forth:** Extension to add go back/forward buttons to the title bar for easier navigation through recent edit locations and opened files.
 
-**Microsoft Black Formatter:** An automatic Python code formatted.
+* **Debug Visualizer:** Extension for visualizing data structures while debugging. Like the watch view, but with rich visualizations of the watched value.
 
-**Microsoft Pylint**:  Support for the Pylint linter.
+* **Error Lens:** Extension to better display errors in the Python code.
 
-**Microsoft Pylance**: This is a powerful tool that enhances the Python development experience in Visual Studio Code by providing tools for code analysis, error checking, code navigation, and code completion. 
+* **Markdown All in One:** Extension for Markdown advanced editing. It adds document outline, automatic table of contents, etc.
 
-**UMLet:** Draw UML diagram inside VSCode.
+* **Protobuf (Protocol Buffers):** Extension to add Protobuf support, powered by Pbkit language server.
+
+* **UMLet:** Draw UML diagram inside VSCode.
+
+### Python
+
+* **Astral Software Ruff:** Support for the Ruff linter.
+
+* **Debug Launcher:** Start debugging, without having to define any tasks or launch configurations, even from the terminal.
+
+* **Microsoft Black Formatter:** An automatic Python code formatted.
+
+* **Microsoft Pylint**:  Support for the Pylint linter.
+
+* **Microsoft Pylance**: This is a powerful tool that enhances the Python development experience in Visual Studio Code by providing tools for code analysis, error checking, code navigation, and code completion. 
 
 ## TODO
 
