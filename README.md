@@ -20,7 +20,6 @@ This documentation outlines the procedures for setting up Visual Studio Code (VS
   - [Additional extensions](#additional-extensions)
     - [General](#general)
     - [Python](#python)
-  - [TODO](#todo)
   - [Additional Resources](#additional-resources)
 
 ## Initialization of Visual Studio Code
@@ -217,6 +216,10 @@ To debug a selected Python file, you must create a `launch.json` file inside you
 }
 ```
 
+**Important:** If you debug a Python file and it does not find its ROS dependencies, you can run the following command in the open Python Debug Console and launch the debug session again.
+
+`./install/setup.bash`
+
 To debug a ROS2 launch file, you must add this code at its end:
 
 ```python
@@ -280,11 +283,15 @@ More information here: https://code.visualstudio.com/docs/devcontainers/attach-c
 
 * **Back & Forth:** Extension to add go back/forward buttons to the title bar for easier navigation through recent edit locations and opened files.
 
+* **CodeSnap:** Extension to take screenshots of your code.
+
 * **Debug Visualizer:** Extension for visualizing data structures while debugging. Like the watch view, but with rich visualizations of the watched value.
 
-* **Error Lens:** Extension to better display errors in the Python code.
+* **Error Lens:** Extension to better display errors in the code.
 
 * **Markdown All in One:** Extension for Markdown advanced editing. It adds document outline, automatic table of contents, etc.
+
+* **Microsoft Live Share:** Extension to share your editor for real-time collaborative development.
 
 * **Protobuf (Protocol Buffers):** Extension to add Protobuf support, powered by Pbkit language server.
 
@@ -298,13 +305,11 @@ More information here: https://code.visualstudio.com/docs/devcontainers/attach-c
 
 * **Microsoft Black Formatter:** An automatic Python code formatted.
 
+* **Microsoft Jupyter:** Extension to edit and run Jupyter notbooks.
+
 * **Microsoft Pylint**:  Support for the Pylint linter.
 
 * **Microsoft Pylance**: This is a powerful tool that enhances the Python development experience in Visual Studio Code by providing tools for code analysis, error checking, code navigation, and code completion. 
-
-## TODO
-
-- Execute and debug Python launch files.
 
 ## Additional Resources
 
