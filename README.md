@@ -1,6 +1,6 @@
 # ROS2 and VSCode
 
-<img height="70px" src="svg/visual_studio_code.svg">
+<img height="70px" src="img/visual_studio_code.svg">
 
 This documentation outlines the procedures for setting up Visual Studio Code (VSCode) to build and execute ROS2 projects effectively.
 
@@ -14,6 +14,8 @@ This documentation outlines the procedures for setting up Visual Studio Code (VS
     - [Colcon build](#colcon-build)
     - [Debugging tests](#debugging-tests)
   - [Working in Python](#working-in-python)
+    - [Intellisense](#intellisense)
+    - [ROS dependencies](#ros-dependencies)
     - [Debugging Python files](#debugging-python-files)
   - [Remote development over SSH](#remote-development-over-ssh)
   - [Development on Docker](#development-on-docker)
@@ -32,15 +34,15 @@ For the purpose of this guide, it is presumed that Visual Studio Code has alread
 
 Upon launching VSCode, proceed to install the Microsoft ROS extension, followed by a restart of the editor.
 
-<img height="80px" src="svg/ros_extension.svg">
+<img height="80px" src="img/ros_extension.svg">
 
 This extension will facilitate the installation of requisite dependencies such as Microsoft C/C++ and Microsoft Python extensions.
 
-<img height="80px" src="svg/cpp_extension.svg"><img height="80px" src="svg/python_extension.svg">
+<img height="80px" src="img/cpp_extension.svg"><img height="80px" src="img/python_extension.svg">
 
 Install the "C/C++ Extension Pack" which provides Intellisense and C++ file navigation. This will install the CMake extension from twsx too.
 
-<img height="80px" src="svg/cmake_extension.svg">
+<img height="80px" src="img/cmake_extension.svg">
 
 You may need to enable Intellisense in your VSCode Preferences Settings.
 
@@ -134,7 +136,7 @@ To execute a build, navigate to the "Run build task..." option within the Termin
 
 Another useful extension is "C++ TestMate" to launch and debug GTests directly within VSCode.
 
-<img height="80px" src="svg/testmate_extension.svg">
+<img height="80px" src="img/testmate_extension.svg">
 
 Please note that for this extension to work correctly, you may need to source your ROS repository before starting up VSCode from the terminal.
 
@@ -176,16 +178,23 @@ To debug your test, you must create a `launch.json` file inside your `.vscode` d
 
 ## Working in Python
 
-When you open an existing ROS2 Python project, IntelliSense may not find ROS2 Python modules, or your local package modules. To solve the issue, create a file `settings.json` with a content matching roughly the following:
+More information available here:
+https://code.visualstudio.com/docs/python/python-tutorial
+
+### Intellisense
+
+When you open an existing ROS2 Python project, IntelliSense does not find your ROS2 Python modules, or your local package modules. To solve the issue, create a file `settings.json` with a content matching roughly the following:
 
 ```json
 {
+    // This is used by IntelliSense for autocompletion and signatures.
     "python.autoComplete.extraPaths": [
         "/opt/ros/humble/lib/python3.10/site-packages", 
         "/opt/ros/humble/local/lib/python3.10/dist-packages",
         "/my_project/build/package1",
         "/my_project/build/package2"
     ],
+    // This is used for static code analysis.
     "python.analysis.extraPaths": [
         "/opt/ros/humble/lib/python3.10/site-packages", 
         "/opt/ros/humble/local/lib/python3.10/dist-packages",
@@ -195,9 +204,43 @@ When you open an existing ROS2 Python project, IntelliSense may not find ROS2 Py
 }
 ```
 
+All Python dependencies are stored in the environment variable `PYTHONPATH`. Unfortunately, VSCode does not use it. To get the list of all libraries, source your project and the type the following bash command:
+
+```bash
+IFS=:; for path in $PYTHONPATH; do echo "\"$path\","; done
+```
+
+### ROS dependencies
+
+The first time you execute or debug a Python file, or a launch file, it may not find its runtime dependencies and throw an error in a Python Debug Console. There are different solutions for this issue.
+
+**Solution 1**
+
+You can source your project in the same Python Debug Console and try again.
+
+`source install/setup.bash`
+
+**Solution 2**
+
+You can modify the user `.bashrc` to source you project whenever you attach to the container.
+
+**Solution 3**
+
+If you do not want to run a command each time you start a debug session and you cannot modify the file `.bashrc`, here is a more versatile approach.
+
+You want to execute a `source` command every time VSCode opens the container. The VSCode DevContainer extension allows you to edit the JSON container configuration file which provides a field for this purpose. Open the configuration file by clicking on the highlighted cog.
+
+<img src="img/container_config.jpg">
+
+Add the following field to modify the `.bashrc` each time you connect VSCode to the container.
+
+```json
+"postAttachCommand": "rep -qF '# setup.bash' $HOME/.bashrc || echo 'source my_project_workspace/install/setup.bash # setup.bash' >> $HOME/.bashrc"
+```
+
 ### Debugging Python files
 
-To debug a selected Python file, you must create a `launch.json` file inside your `.vscode` directory. The file is automatically created for you when you debug your first test with the following content.
+To debug a normal Python file, you must create a `launch.json` file inside your `.vscode` directory.
 
 ```json
 {
@@ -216,11 +259,43 @@ To debug a selected Python file, you must create a `launch.json` file inside you
 }
 ```
 
-**Important:** If you debug a Python file and it does not find its ROS dependencies, you can run the following command in the open Python Debug Console and launch the debug session again.
+To debug a ROS2 Python launch file, you can open a command palette and type "ROS: Run a ROS launch file (roslaunch)" to add a new launch configuration to your `launch.json`. You can also add it manually.
 
-`./install/setup.bash`
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        ...
+        {
+            "name": "ROS: Launch",
+            "type": "ros",
+            "request": "launch",
+            "target": "/absolute-path/launch-file.py"
+        },
+        ...
+    ]
+}
+```
 
-To debug a ROS2 launch file, you must add this code at its end:
+The ROS2 extensions allows you to debug a running node as well.
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        ...
+        {
+        {
+            "name": "ROS: Attach",
+            "type": "ros",
+            "request": "attach"
+        },
+        ...
+    ]
+}
+```
+
+Following is a more complex solution that requires you to modify the Python file. Add this code to the end of the launch file to convert it to normal Python file:
 
 ```python
 def main():
@@ -232,8 +307,6 @@ def main():
 if __name__ == '__main__':
     main()
 ```
-
-With this code, we transform the launch file into a standard executable file that we can debug as a normal python file.
 
 Using an "opaque function" allows you to debug the values of launch parameters. However, together with the previous change, you'll need to modify the launch file as demonstrated in the following example.
 
@@ -261,11 +334,13 @@ In VSCode, we can add a breakpoint and display the content of this variable with
 my_param.perform(context)
 ```
 
+
+
 ## Remote development over SSH
 
 VSCode can be used to develop remotely over SSH. You must install an extension called Microsoft Remote SSH. This extension will also add a button on the left toolbar to display all available Docker containers.
 
-<img height="80px" src="svg/ssh_extension.svg">
+<img height="80px" src="img/ssh_extension.svg">
 
 Open the command palette and type: "Remote-SSH: Connect to Host...".
 
@@ -273,7 +348,7 @@ Open the command palette and type: "Remote-SSH: Connect to Host...".
 
 VSCode can be used to develop on Docker. You must install an extension called Microsoft Dev Containers which you can use to connect to running containers. You can easily install your local VSCode extensions into the container.
 
-<img height="80px" src="svg/dev_container_extension.svg">
+<img height="80px" src="img/dev_container_extension.svg">
 
 More information here: https://code.visualstudio.com/docs/devcontainers/attach-container
 
