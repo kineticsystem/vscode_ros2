@@ -72,18 +72,18 @@ To run the `colcon` command from VSCode, you need to create a `task.json` file w
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "Colcon: build",
             "type": "shell",
             "command": "cd project-workspace; source /opt/ros/humble/setup.bash; colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug --symlink-install --event-handlers log-"
         },
         {
-            "label": "clean",
+            "label": "Colcon: clean",
             "type": "shell",
             "command": "cd project-workspace; rm -rf build/ install/ log/",
             "problemMatcher": []
         },
         {
-            "label": "test",
+            "label": "Colcon: test",
             "type": "shell",
             "command": "cd project-workspace; source /opt/ros/humble/setup.bash; source install/setup.bash; colcon test && colcon test-result --verbose"
         }
@@ -188,7 +188,7 @@ To debug your test, you must create a `launch.json` file inside your `.vscode` d
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Launch",
+            "name": "GDP: launch",
             "type": "cppdbg",
             "request": "launch",
             "program": "enter program name, for example ${workspaceFolder}/a.out",
