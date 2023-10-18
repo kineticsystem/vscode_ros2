@@ -9,16 +9,16 @@ This documentation outlines the procedures for setting up Visual Studio Code (VS
 - [ROS2 and VSCode](#ros2-and-vscode)
   - [Table of Contents](#table-of-contents)
   - [Initialization of Visual Studio Code](#initialization-of-visual-studio-code)
+  - [Remote development over SSH](#remote-development-over-ssh)
+  - [Development on Docker](#development-on-docker)
+    - [How to build with Colcon](#how-to-build-with-colcon)
+  - [Sourcing your ROS Dependencies](#sourcing-your-ros-dependencies)
   - [Working in C++](#working-in-c)
     - [Navigation and Shortcuts](#navigation-and-shortcuts)
-    - [Colcon build](#colcon-build)
     - [Debugging tests](#debugging-tests)
   - [Working in Python](#working-in-python)
     - [Intellisense](#intellisense)
-    - [ROS dependencies](#ros-dependencies)
     - [Debugging Python files](#debugging-python-files)
-  - [Remote development over SSH](#remote-development-over-ssh)
-  - [Development on Docker](#development-on-docker)
   - [Additional extensions](#additional-extensions)
     - [General](#general)
     - [Python](#python)
@@ -46,10 +46,87 @@ Install the "C/C++ Extension Pack" which provides Intellisense and C++ file navi
 
 You may need to enable Intellisense in your VSCode Preferences Settings.
 
-Restart VSCode and open the root of your ROS2 project repository where `build`, `install`, `log` and `src` folders are usually located. For instance:
+## Remote development over SSH
 
+VSCode can be used to develop remotely over SSH. You must install an extension called Microsoft Remote SSH. This extension will also add a button on the left toolbar to display all available Docker containers.
+
+<img height="80px" src="img/ssh_extension.svg">
+
+Open the command palette and type: "Remote-SSH: Connect to Host...".
+
+## Development on Docker
+
+VSCode can be used to develop on Docker. You must install an extension called Microsoft Dev Containers which you can use to connect to running containers. You can easily install your local VSCode extensions into the container.
+
+<img height="80px" src="img/dev_container_extension.svg">
+
+More information here: https://code.visualstudio.com/docs/devcontainers/attach-container
+
+
+### How to build with Colcon
+
+To run the `colcon` command from VSCode, you need to create a `task.json` file within the `.vscode` folder and populate it with the following content:
+
+```json
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "cd project-root-dir; source /opt/ros/humble/setup.bash; colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug --symlink-install --event-handlers log-"
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "cd project-root-dir; rm -rf build/ install/ log/",
+            "problemMatcher": []
+        },
+        {
+            "label": "test",
+            "type": "shell",
+            "command": "cd project-root-dir; source /opt/ros/humble/setup.bash; source install/setup.bash; colcon test && colcon test-result --verbose"
+        }
+    ]
+}
 ```
-~/user/my_project
+
+Remember to modify the following line according to your ROS2 distribution. In this way, you will be able to execute Colcon commands from within VSCode:
+
+`source /opt/ros/humble/setup.bash`
+
+To execute a build, navigate to the "Run build task..." option within the Terminal menu. The system will automatically locate and initiate the build task specified in the aforementioned `tasks.json` file. Alternatively, use the keyboard shortcut:
+
+`Ctrl + Shift + B`
+
+Using the same approach you can also execute any ROS2 launch files.
+
+## Sourcing your ROS Dependencies
+
+When you execute or debug a file in your project, it may fail to find its runtime dependencies and throw an error in the Debug Console. There are different solutions for this issue.
+
+**Solution 1**
+
+You can source your project in the same Debug Console and try again.
+
+`source install/setup.bash`
+
+**Solution 2**
+
+You can modify the user `.bashrc` to source you project whenever you attach to the container.
+
+**Solution 3**
+
+If you do not want to run a command each time you start a debug session and you cannot modify the file `.bashrc`, here is a more versatile approach.
+
+You want to execute a `source` command every time VSCode opens the container. The VSCode DevContainer extension allows you to edit the JSON container configuration file which provides a field for this purpose. Open the configuration file by clicking on the highlighted cog.
+
+<img src="img/container_config.jpg">
+
+Add the following field to modify the `.bashrc` each time you connect VSCode to the container.
+
+```json
+"postAttachCommand": "rep -qF '# setup.bash' $HOME/.bashrc || echo 'source my_project_workspace/install/setup.bash # setup.bash' >> $HOME/.bashrc"
 ```
 
 ## Working in C++
@@ -93,44 +170,6 @@ Update it to match roughly the following content:
 You may conveniently toggle between `.cpp` and `.hpp` files using the following keyboard shortcut:
 
 `Alt + O`
-
-### Colcon build
-
-If you want to run Colcon from VSCode, always remember to open the root of your repository where `build`, `install`, `log` and `src` folders are usually located.
-
-At this stage, no task has been defined. To rectify this, create a `tasks.json` file within the `.vscode` folder and populate it with the following content:
-
-```json
-{
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "build",
-            "type": "shell",
-            "command": "source /opt/ros/humble/setup.bash; colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug --symlink-install --event-handlers log-"
-        },
-        {
-            "label": "clean",
-            "type": "shell",
-            "command": "rm -rf build/ install/ log/",
-            "problemMatcher": []
-        },
-        {
-            "label": "test",
-            "type": "shell",
-            "command": "source /opt/ros/humble/setup.bash; source install/setup.bash; colcon test && colcon test-result --verbose"
-        }
-    ]
-}
-```
-
-Remember to modify the following line according to your ROS2 distribution. In this way, you will be able to execute Colcon commands from within VSCode:
-
-`source /opt/ros/humble/setup.bash`
-
-To execute a build, navigate to the "Run build task..." option within the Terminal menu. The system will automatically locate and initiate the build task specified in the aforementioned `tasks.json` file. Alternatively, use the keyboard shortcut:
-
-`Ctrl + Shift + B`
 
 ### Debugging tests
 
@@ -208,34 +247,6 @@ All Python dependencies are stored in the environment variable `PYTHONPATH`. Unf
 
 ```bash
 IFS=:; for path in $PYTHONPATH; do echo "\"$path\","; done
-```
-
-### ROS dependencies
-
-The first time you execute or debug a Python file, or a launch file, it may not find its runtime dependencies and throw an error in a Python Debug Console. There are different solutions for this issue.
-
-**Solution 1**
-
-You can source your project in the same Python Debug Console and try again.
-
-`source install/setup.bash`
-
-**Solution 2**
-
-You can modify the user `.bashrc` to source you project whenever you attach to the container.
-
-**Solution 3**
-
-If you do not want to run a command each time you start a debug session and you cannot modify the file `.bashrc`, here is a more versatile approach.
-
-You want to execute a `source` command every time VSCode opens the container. The VSCode DevContainer extension allows you to edit the JSON container configuration file which provides a field for this purpose. Open the configuration file by clicking on the highlighted cog.
-
-<img src="img/container_config.jpg">
-
-Add the following field to modify the `.bashrc` each time you connect VSCode to the container.
-
-```json
-"postAttachCommand": "rep -qF '# setup.bash' $HOME/.bashrc || echo 'source my_project_workspace/install/setup.bash # setup.bash' >> $HOME/.bashrc"
 ```
 
 ### Debugging Python files
@@ -333,24 +344,6 @@ In VSCode, we can add a breakpoint and display the content of this variable with
 ```python
 my_param.perform(context)
 ```
-
-
-
-## Remote development over SSH
-
-VSCode can be used to develop remotely over SSH. You must install an extension called Microsoft Remote SSH. This extension will also add a button on the left toolbar to display all available Docker containers.
-
-<img height="80px" src="img/ssh_extension.svg">
-
-Open the command palette and type: "Remote-SSH: Connect to Host...".
-
-## Development on Docker
-
-VSCode can be used to develop on Docker. You must install an extension called Microsoft Dev Containers which you can use to connect to running containers. You can easily install your local VSCode extensions into the container.
-
-<img height="80px" src="img/dev_container_extension.svg">
-
-More information here: https://code.visualstudio.com/docs/devcontainers/attach-container
 
 ## Additional extensions
 
