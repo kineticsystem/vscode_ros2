@@ -74,18 +74,18 @@ To run the `colcon` command from VSCode, you need to create a `task.json` file w
         {
             "label": "build",
             "type": "shell",
-            "command": "cd project-root-dir; source /opt/ros/humble/setup.bash; colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug --symlink-install --event-handlers log-"
+            "command": "cd project-workspace; source /opt/ros/humble/setup.bash; colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug --symlink-install --event-handlers log-"
         },
         {
             "label": "clean",
             "type": "shell",
-            "command": "cd project-root-dir; rm -rf build/ install/ log/",
+            "command": "cd project-workspace; rm -rf build/ install/ log/",
             "problemMatcher": []
         },
         {
             "label": "test",
             "type": "shell",
-            "command": "cd project-root-dir; source /opt/ros/humble/setup.bash; source install/setup.bash; colcon test && colcon test-result --verbose"
+            "command": "cd project-workspace; source /opt/ros/humble/setup.bash; source install/setup.bash; colcon test && colcon test-result --verbose"
         }
     ]
 }
@@ -126,7 +126,7 @@ You want to execute a `source` command every time VSCode opens the container. Th
 Add the following field to modify the `.bashrc` each time you connect VSCode to the container.
 
 ```json
-"postAttachCommand": "rep -qF '# setup.bash' $HOME/.bashrc || echo 'source my_project_workspace/install/setup.bash # setup.bash' >> $HOME/.bashrc"
+"postAttachCommand": "rep -qF '# setup.bash' $HOME/.bashrc || echo 'source project-workspace/install/setup.bash # setup.bash' >> $HOME/.bashrc"
 ```
 
 ## Working in C++
