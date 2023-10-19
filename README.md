@@ -228,7 +228,7 @@ https://code.visualstudio.com/docs/python/python-tutorial
 
 When you open an existing ROS2 Python project, IntelliSense does not find your ROS2 Python modules, or your local package modules. To solve the issue, create a file `settings.json` with a content matching roughly the following:
 
-```json
+```json5
 {
     // This is used by IntelliSense for autocompletion and signatures.
     "python.autoComplete.extraPaths": [
@@ -247,7 +247,7 @@ When you open an existing ROS2 Python project, IntelliSense does not find your R
 }
 ```
 
-All Python dependencies are stored in the environment variable `PYTHONPATH`. Unfortunately, VSCode does not use it. To get the list of all libraries, source your project and the type the following bash command:
+All Python dependencies are stored in the environment variable `PYTHONPATH`. Unfortunately, VSCode does not use it. To get the list of all libraries, source your project and type the following bash command:
 
 ```bash
 IFS=:; for path in $PYTHONPATH; do echo "\"$path\","; done
