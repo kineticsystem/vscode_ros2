@@ -11,7 +11,7 @@ This documentation outlines the procedures for setting up Visual Studio Code (VS
   - [Initialization of Visual Studio Code](#initialization-of-visual-studio-code)
   - [Remote development over SSH](#remote-development-over-ssh)
   - [Development on Docker](#development-on-docker)
-    - [How to build with Colcon](#how-to-build-with-colcon)
+  - [How to build with Colcon](#how-to-build-with-colcon)
   - [Sourcing your ROS Dependencies](#sourcing-your-ros-dependencies)
   - [Working in C++](#working-in-c)
     - [Navigation and Shortcuts](#navigation-and-shortcuts)
@@ -63,7 +63,7 @@ VSCode can be used to develop on Docker. You must install an extension called Mi
 More information here: https://code.visualstudio.com/docs/devcontainers/attach-container
 
 
-### How to build with Colcon
+## How to build with Colcon
 
 To run the `colcon` command from VSCode, you need to create a `task.json` file within the `.vscode` folder and populate it with the following content:
 
@@ -91,11 +91,9 @@ To run the `colcon` command from VSCode, you need to create a `task.json` file w
 }
 ```
 
-Remember to modify the following line according to your ROS2 distribution. In this way, you will be able to execute Colcon commands from within VSCode:
+Modify the file according to your ROS2 distribution and project location.
 
-`source /opt/ros/humble/setup.bash`
-
-To execute a build, navigate to the "Run build task..." option within the Terminal menu. The system will automatically locate and initiate the build task specified in the aforementioned `tasks.json` file. Alternatively, use the keyboard shortcut:
+To build your project, choose *"Terminal → Run build task..."* from the menu. The system will automatically locate and initiate the build task specified in the aforementioned `tasks.json` file. Alternatively, use the keyboard shortcut:
 
 `Ctrl + Shift + B`
 
@@ -138,7 +136,7 @@ c_cpp_properties.json
 settings.json
 ```
 
-If `c_cpp_properties.json` is not created, you can create a new one by opening the command palette and typing "C++: Edit Configurations (UI)".
+If `c_cpp_properties.json` is not created, you can create a new one by opening the command palette and typing *"C++: Edit Configurations (UI)"*.
 Update it to match roughly the following content:
 
 ```json
@@ -270,7 +268,7 @@ To debug a normal Python file, you must create a `launch.json` file inside your 
 }
 ```
 
-To debug a ROS2 Python launch file, you can open a command palette and type "ROS: Run a ROS launch file (roslaunch)" to add a new launch configuration to your `launch.json`. You can also add it manually.
+To debug a ROS2 Python launch file, you can open a command palette and type *"ROS: Run a ROS launch file (roslaunch)"* to add a new launch configuration to your `launch.json`. You can also add it manually.
 
 ```json
 {
