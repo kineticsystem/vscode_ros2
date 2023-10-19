@@ -119,12 +119,18 @@ If you do not want to run a command each time you start a debug session and you 
 
 You want to execute a `source` command every time VSCode opens the container. The VSCode DevContainer extension allows you to edit the JSON container configuration file which provides a field for this purpose. Open the configuration file by clicking on the highlighted cog.
 
-<img src="img/container_config.jpg">
+<img height="300" src="img/container_config.jpg">
 
 Add the following field to modify the `.bashrc` each time you connect VSCode to the container.
 
 ```json
 "postAttachCommand": "rep -qF '# setup.bash' $HOME/.bashrc || echo 'source project-workspace/install/setup.bash # setup.bash' >> $HOME/.bashrc"
+```
+
+The container configuration file is usually stored somewhere inside this folder:
+
+```bash
+$HOME/.config/Code/User/globalStorage/ms-vscode-remote.remote-containers/
 ```
 
 ## Working in C++
