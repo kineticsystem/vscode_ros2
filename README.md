@@ -187,7 +187,7 @@ Please note that for this extension to work correctly, you may need to source yo
 
 To debug your test, you must create a `launch.json` file inside your `.vscode` directory. The file is automatically created for you when you debug your first test.
 
-```json
+```jsonc
 {
     "version": "0.2.0",
     "configurations": [
@@ -228,7 +228,7 @@ https://code.visualstudio.com/docs/python/python-tutorial
 
 When you open an existing ROS2 Python project, IntelliSense does not find your ROS2 Python modules, or your local package modules. To solve the issue, create a file `settings.json` with a content matching roughly the following:
 
-```json5
+```jsonc
 {
     // This is used by IntelliSense for autocompletion and signatures.
     "python.autoComplete.extraPaths": [
