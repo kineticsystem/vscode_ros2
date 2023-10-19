@@ -67,7 +67,7 @@ More information here: https://code.visualstudio.com/docs/devcontainers/attach-c
 
 To run the `colcon` command from VSCode, you need to create a `task.json` file within the `.vscode` folder and populate it with the following content:
 
-```json
+```yaml
 {
     "version": "2.0.0",
     "tasks": [
@@ -123,7 +123,7 @@ You want to execute a `source` command every time VSCode opens the container. Th
 
 Add the following field to modify the `.bashrc` each time you connect VSCode to the container.
 
-```json
+```yaml
 "postAttachCommand": "rep -qF 'setup.bash' $HOME/.bashrc || echo 'source project-workspace/install/setup.bash' >> $HOME/.bashrc"
 ```
 
@@ -145,7 +145,7 @@ settings.json
 If `c_cpp_properties.json` is not created, you can create a new one by opening the command palette and typing *"C++: Edit Configurations (UI)"*.
 Update it to match roughly the following content:
 
-```json
+```yaml
 {
   "configurations": [
     {
@@ -187,7 +187,7 @@ Please note that for this extension to work correctly, you may need to source yo
 
 To debug your test, you must create a `launch.json` file inside your `.vscode` directory. The file is automatically created for you when you debug your first test.
 
-```jsonc
+```yaml
 {
     "version": "0.2.0",
     "configurations": [
@@ -228,7 +228,7 @@ https://code.visualstudio.com/docs/python/python-tutorial
 
 When you open an existing ROS2 Python project, IntelliSense does not find your ROS2 Python modules, or your local package modules. To solve the issue, create a file `settings.json` with a content matching roughly the following:
 
-```jsonc
+```yaml
 {
     // This is used by IntelliSense for autocompletion and signatures.
     "python.autoComplete.extraPaths": [
@@ -257,7 +257,7 @@ IFS=:; for path in $PYTHONPATH; do echo "\"$path\","; done
 
 To debug a normal Python file, you must create a `launch.json` file inside your `.vscode` directory.
 
-```json
+```yaml
 {
     "version": "0.2.0",
     "configurations": [
@@ -276,7 +276,7 @@ To debug a normal Python file, you must create a `launch.json` file inside your 
 
 To debug a ROS2 Python launch file, you can open a command palette and type *"ROS: Run a ROS launch file (roslaunch)"* to add a new launch configuration to your `launch.json`. You can also add it manually.
 
-```json
+```yaml
 {
     "version": "0.2.0",
     "configurations": [
@@ -294,7 +294,7 @@ To debug a ROS2 Python launch file, you can open a command palette and type *"RO
 
 The ROS2 extensions allows you to debug a running node as well.
 
-```json
+```yaml
 {
     "version": "0.2.0",
     "configurations": [
