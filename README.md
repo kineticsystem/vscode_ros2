@@ -124,7 +124,7 @@ You want to execute a `source` command every time VSCode opens the container. Th
 Add the following field to modify the `.bashrc` each time you connect VSCode to the container.
 
 ```json
-"postAttachCommand": "rep -qF '# setup.bash' $HOME/.bashrc || echo 'source project-workspace/install/setup.bash # setup.bash' >> $HOME/.bashrc"
+"postAttachCommand": "rep -qF 'setup.bash' $HOME/.bashrc || echo 'source project-workspace/install/setup.bash' >> $HOME/.bashrc"
 ```
 
 The container configuration file is usually stored somewhere inside this folder:
