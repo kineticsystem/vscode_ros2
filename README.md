@@ -121,12 +121,12 @@ You want to execute a `source` command every time VSCode opens the container. Th
 
 <img height="300" src="img/container_config.jpg">
 
-Add the following field to modify the `.bashrc` each time you connect VSCode to the container.
+Add the following field to modify the `.bashrc` each time you connect VSCode to the container. `TAG` is a unique id used to verify if the command has already been added.
 
 ```yaml
-"postAttachCommand": "rep -qF 'setup.bash' $HOME/.bashrc || echo 'source project-workspace/install/setup.bash' >> $HOME/.bashrc"
+"postAttachCommand": "grep -qF 'TAG' $HOME/.bashrc || echo 'source project-workspace/install/setup.bash # TAG' >> $HOME/.bashrc"
 ```
-
+W
 The container configuration file is usually stored somewhere inside this folder:
 
 ```bash
