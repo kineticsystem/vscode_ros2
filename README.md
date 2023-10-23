@@ -18,6 +18,7 @@ This documentation outlines the procedures for setting up Visual Studio Code (VS
     - [Debugging tests](#debugging-tests)
   - [Working in Python](#working-in-python)
     - [Intellisense](#intellisense)
+    - [Sorting imports](#sorting-imports)
     - [Debugging Python files](#debugging-python-files)
   - [Additional extensions](#additional-extensions)
     - [General](#general)
@@ -252,6 +253,12 @@ All Python dependencies are stored in the environment variable `PYTHONPATH`. Unf
 ```bash
 IFS=:; for path in $PYTHONPATH; do echo "\"$path\","; done
 ```
+
+### Sorting imports
+
+To sort imports in a Python module, open the command palette and type *"Organize imports"*. You can also use the following shortcut:
+
+`Shif + Alt + O`
 
 ### Debugging Python files
 
