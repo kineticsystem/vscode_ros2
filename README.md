@@ -56,7 +56,7 @@ Open the command palette and type: "Remote-SSH: Connect to Host...".
 
 ## Development on Docker
 
-VSCode can be used to develop on Docker. You must install an extension called Microsoft Dev Containers which you can use to connect to running containers. You can easily install your local VSCode extensions into the container.
+VSCode can be used to develop on Docker. You must install an extension called Microsoft Dev Containers, which you can use to connect to running containers. You can easily install your local VSCode extensions into the container.
 
 <img height="80px" src="img/dev_container_extension.svg">
 
@@ -93,11 +93,11 @@ To run the `colcon` command from VSCode, you need to create a `task.json` file w
 
 Modify the file according to your ROS2 distribution and project location.
 
-To build your project, choose *"Terminal → Run build task..."* from the menu. The system will automatically locate and initiate the build task specified in the aforementioned `tasks.json` file. Alternatively, use the keyboard shortcut:
+Choose *"Terminal → Run build task..."* from the menu to build your project. The system will automatically locate and initiate the build task specified in the aforementioned `tasks.json` file. Alternatively, use the keyboard shortcut:
 
 `Ctrl + Shift + B`
 
-Using the same approach you can also execute any ROS2 launch files.
+Using the same approach, you can also execute any ROS2 launch files.
 
 ## Sourcing your ROS Dependencies
 
@@ -111,22 +111,22 @@ You can source your project in the same Debug Console and try again.
 
 **Solution 2**
 
-You can modify the user `.bashrc` to source you project whenever you attach to the container.
+You can modify the user `.bashrc` to source your project whenever you attach VSCode to the container.
 
 **Solution 3**
 
 If you do not want to run a command each time you start a debug session and you cannot modify the file `.bashrc`, here is a more versatile approach.
 
-You want to execute a `source` command every time VSCode opens the container. The VSCode DevContainer extension allows you to edit the JSON container configuration file which provides a field for this purpose. Open the configuration file by clicking on the highlighted cog.
+You want to execute a `source` command every time VSCode opens the container. The VSCode DevContainer extension allows you to edit the JSON container configuration file, providing a field for this purpose. Open the configuration file by clicking on the highlighted cog.
 
 <img height="300" src="img/container_config.jpg">
 
-Add the following field to modify the `.bashrc` each time you connect VSCode to the container. `TAG` is a unique id used to verify if the command has already been added.
+Add the following field to modify the `.bashrc` each time you connect VSCode to the container. `TAG` is a unique ID to verify if the command has already been added.
 
 ```yaml
 "postAttachCommand": "grep -qF 'TAG' $HOME/.bashrc || echo 'source project-workspace/install/setup.bash # TAG' >> $HOME/.bashrc"
 ```
-W
+
 The container configuration file is usually stored somewhere inside this folder:
 
 ```bash
@@ -195,7 +195,7 @@ To debug your test, you must create a `launch.json` file inside your `.vscode` d
             "name": "GDP: launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "enter program name, for example ${workspaceFolder}/a.out",
+            "program": "enter program name, for example, ${workspaceFolder}/a.out",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
@@ -221,12 +221,12 @@ To debug your test, you must create a `launch.json` file inside your `.vscode` d
 
 ## Working in Python
 
-More information available here:
+More information is available here:
 https://code.visualstudio.com/docs/python/python-tutorial
 
 ### Intellisense
 
-When you open an existing ROS2 Python project, IntelliSense does not find your ROS2 Python modules, or your local package modules. To solve the issue, create a file `settings.json` with a content matching roughly the following:
+When you open an existing ROS2 Python project, IntelliSense does not find your ROS2 Python modules or your local package modules. To solve the issue, create a file `settings.json` with content matching roughly the following:
 
 ```yaml
 {
@@ -292,7 +292,7 @@ To debug a ROS2 Python launch file, you can open a command palette and type *"RO
 }
 ```
 
-The ROS2 extensions allows you to debug a running node as well.
+The ROS2 extension allows you to debug a running node as well.
 
 ```yaml
 {
@@ -310,7 +310,7 @@ The ROS2 extensions allows you to debug a running node as well.
 }
 ```
 
-Following is a more complex solution that requires you to modify the Python file. Add this code to the end of the launch file to convert it to normal Python file:
+Following is a more complex solution that requires you to modify the Python file. Add this code to the end of the launch file to convert it to a normal Python file:
 
 ```python
 def main():
@@ -323,7 +323,7 @@ if __name__ == '__main__':
     main()
 ```
 
-Using an "opaque function" allows you to debug the values of launch parameters. However, together with the previous change, you'll need to modify the launch file as demonstrated in the following example.
+Using an "opaque function" allows you to debug the values of launch parameters. However, together with the previous change, you'll need to modify the launch file, as demonstrated in the following example.
 
 ```python
 def launch_setup(context, *args, **kwargs):
@@ -361,23 +361,23 @@ my_param.perform(context)
 
 * **Error Lens:** Extension to better display errors in the code.
 
-* **Markdown All in One:** Extension for Markdown advanced editing. It adds document outline, automatic table of contents, etc.
+* **Markdown All in One:** Extension for Markdown advanced editing. It adds a document outline, automatic table of contents, etc.
 
 * **Microsoft Live Share:** Extension to share your editor for real-time collaborative development.
 
 * **Protobuf (Protocol Buffers):** Extension to add Protobuf support, powered by Pbkit language server.
 
-* **UMLet:** Draw UML diagram inside VSCode.
+* **UMLet:** Draw UML diagrams inside VSCode.
 
 ### Python
 
 * **Astral Software Ruff:** Support for the Ruff linter.
 
-* **Debug Launcher:** Start debugging, without having to define any tasks or launch configurations, even from the terminal.
+* **Debug Launcher:** Start debugging without having to define any tasks or launch configurations, even from the terminal.
 
 * **Microsoft Black Formatter:** An automatic Python code formatted.
 
-* **Microsoft Jupyter:** Extension to edit and run Jupyter notbooks.
+* **Microsoft Jupyter:** Extension to edit and run Jupyter notebooks.
 
 * **Microsoft Pylint**:  Support for the Pylint linter.
 
