@@ -73,20 +73,33 @@ To run the `colcon` command from VSCode, you need to create a `task.json` file w
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Colcon: build",
+            "label": "Colcon: build (debug)",
             "type": "shell",
-            "command": "cd project-workspace; source /opt/ros/humble/setup.bash; colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug --symlink-install --event-handlers log-"
+            "command": [
+                "cd project-workspace;",
+                "source /opt/ros/humble/setup.bash;",
+                "colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug --symlink-install --event-handlers log-;"
+            ]
         },
         {
             "label": "Colcon: clean",
             "type": "shell",
-            "command": "cd project-workspace; rm -rf build/ install/ log/",
+            "command": [
+                "cd project-workspace;",
+                "rm -rf build/ install/ log/;"
+            ]
             "problemMatcher": []
         },
         {
             "label": "Colcon: test",
             "type": "shell",
-            "command": "cd project-workspace; source /opt/ros/humble/setup.bash; source install/setup.bash; colcon test && colcon test-result --verbose"
+            "command": [
+                "cd project-workspace;",
+                "source /opt/ros/humble/setup.bash;",
+                "source install/setup.bash;",
+                "colcon test;",
+                "colcon test-result --verbose;"
+            ]
         }
     ]
 }
@@ -373,6 +386,8 @@ my_param.perform(context)
 * **Microsoft Live Share:** Extension to share your editor for real-time collaborative development.
 
 * **Protobuf (Protocol Buffers):** Extension to add Protobuf support, powered by Pbkit language server.
+
+* **Task Runner (forbeslindesay v1.0.0):** Extension to display tasks to run on the left panel.
 
 * **UMLet:** Draw UML diagrams inside VSCode.
 
