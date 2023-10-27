@@ -11,8 +11,8 @@ This documentation outlines the procedures for setting up Visual Studio Code (VS
   - [Initialization of Visual Studio Code](#initialization-of-visual-studio-code)
   - [Remote development over SSH](#remote-development-over-ssh)
   - [Development on Docker](#development-on-docker)
-  - [How to build with Colcon](#how-to-build-with-colcon)
   - [Sourcing your ROS Dependencies](#sourcing-your-ros-dependencies)
+  - [How to build with Colcon](#how-to-build-with-colcon)
   - [Working in C++](#working-in-c)
     - [Navigation and Shortcuts](#navigation-and-shortcuts)
     - [Debugging tests](#debugging-tests)
@@ -63,6 +63,39 @@ VSCode can be used to develop on Docker. You must install an extension called Mi
 
 More information here: https://code.visualstudio.com/docs/devcontainers/attach-container
 
+## Sourcing your ROS Dependencies
+
+When you execute or debug a file in your project, it may fail to find its runtime dependencies and throw an error in the Debug Console. There are different solutions for this issue.
+
+**Solution 1 - for local development**
+
+You can source your project in the same Debug Console and try again.
+
+`source install/setup.bash`
+
+**Solution 2 - for local development**
+
+You can modify the user `.bashrc` to source your project whenever you attach VSCode to the container.
+
+**Solution 3 - for docker containers**
+
+If you do not want to run a command each time you start a debug session and you cannot modify the file `.bashrc`, here is a more versatile approach.
+
+You want to execute a `source` command every time VSCode opens the container. The VSCode DevContainer extension allows you to edit the JSON container configuration file, providing a field for this purpose. Open the configuration file by clicking on the highlighted cog.
+
+<img height="300" src="img/container_config.jpg">
+
+Add the following field to modify the `.bashrc` each time you connect VSCode to the container. `TAG` is a unique ID to verify if the command has already been added.
+
+```yaml
+"postAttachCommand": "grep -qF 'TAG' $HOME/.bashrc || echo 'source project-workspace/install/setup.bash # TAG' >> $HOME/.bashrc"
+```
+
+The container configuration file is usually stored somewhere inside this folder:
+
+```bash
+$HOME/.config/Code/User/globalStorage/ms-vscode-remote.remote-containers/
+```
 
 ## How to build with Colcon
 
@@ -113,45 +146,11 @@ To run the `colcon` command from VSCode, you need to create a `task.json` file w
 
 Modify the file according to your ROS2 distribution and project location.
 
-Choose *"Terminal → Run build task..."* from the menu to build your project. The system will automatically locate and initiate the build task specified in the aforementioned `tasks.json` file. Alternatively, use the keyboard shortcut:
+Choose _"Terminal → Run build task..."_ from the menu to build your project. The system will automatically locate and initiate the build task specified in the aforementioned `tasks.json` file. Alternatively, use the keyboard shortcut:
 
 `Ctrl + Shift + B`
 
 Using the same approach, you can also execute any ROS2 launch files.
-
-## Sourcing your ROS Dependencies
-
-When you execute or debug a file in your project, it may fail to find its runtime dependencies and throw an error in the Debug Console. There are different solutions for this issue.
-
-**Solution 1**
-
-You can source your project in the same Debug Console and try again.
-
-`source install/setup.bash`
-
-**Solution 2**
-
-You can modify the user `.bashrc` to source your project whenever you attach VSCode to the container.
-
-**Solution 3**
-
-If you do not want to run a command each time you start a debug session and you cannot modify the file `.bashrc`, here is a more versatile approach.
-
-You want to execute a `source` command every time VSCode opens the container. The VSCode DevContainer extension allows you to edit the JSON container configuration file, providing a field for this purpose. Open the configuration file by clicking on the highlighted cog.
-
-<img height="300" src="img/container_config.jpg">
-
-Add the following field to modify the `.bashrc` each time you connect VSCode to the container. `TAG` is a unique ID to verify if the command has already been added.
-
-```yaml
-"postAttachCommand": "grep -qF 'TAG' $HOME/.bashrc || echo 'source project-workspace/install/setup.bash # TAG' >> $HOME/.bashrc"
-```
-
-The container configuration file is usually stored somewhere inside this folder:
-
-```bash
-$HOME/.config/Code/User/globalStorage/ms-vscode-remote.remote-containers/
-```
 
 ## Working in C++
 
@@ -162,30 +161,33 @@ c_cpp_properties.json
 settings.json
 ```
 
-If `c_cpp_properties.json` is not created, you can create a new one by opening the command palette and typing *"C++: Edit Configurations (UI)"*.
+If `c_cpp_properties.json` is not created, you can create a new one by opening the command palette and typing _"C++: Edit Configurations (UI)"_.
 Update it to match roughly the following content:
 
 ```yaml
 {
-  "configurations": [
-    {
-      "browse": {
-        "databaseFilename": "${default}",
-        "limitSymbolsToIncludedHeaders": false
+  "configurations":
+    [
+      {
+        "browse":
+          {
+            "databaseFilename": "${default}",
+            "limitSymbolsToIncludedHeaders": false,
+          },
+        "includePath":
+          [
+            "${workspaceFolder}/**",
+            "/opt/ros/humble/include/**",
+            "/usr/include/**",
+          ],
+        "name": "ROS",
+        "intelliSenseMode": "gcc-x64",
+        "compilerPath": "/usr/bin/gcc",
+        "cStandard": "gnu11",
+        "cppStandard": "c++17",
       },
-      "includePath": [
-        "${workspaceFolder}/**",
-        "/opt/ros/humble/include/**",
-        "/usr/include/**"
-      ],
-      "name": "ROS",
-      "intelliSenseMode": "gcc-x64",
-      "compilerPath": "/usr/bin/gcc",
-      "cStandard": "gnu11",
-      "cppStandard": "c++17"
-    }
-  ],
-  "version": 4
+    ],
+  "version": 4,
 }
 ```
 
@@ -209,33 +211,35 @@ To debug your test, you must create a `launch.json` file inside your `.vscode` d
 
 ```yaml
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "GDP: launch",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "enter program name, for example, ${workspaceFolder}/a.out",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "Set Disassembly Flavor to Intel",
-                    "text": "-gdb-set disassembly-flavor intel",
-                    "ignoreFailures": true
-                }
-            ]
-        }
-    ]
+  "version": "0.2.0",
+  "configurations":
+    [
+      {
+        "name": "GDP: launch",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "enter program name, for example, ${workspaceFolder}/a.out",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${fileDirname}",
+        "environment": [],
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "setupCommands":
+          [
+            {
+              "description": "Enable pretty-printing for gdb",
+              "text": "-enable-pretty-printing",
+              "ignoreFailures": true,
+            },
+            {
+              "description": "Set Disassembly Flavor to Intel",
+              "text": "-gdb-set disassembly-flavor intel",
+              "ignoreFailures": true,
+            },
+          ],
+      },
+    ],
 }
 ```
 
@@ -249,22 +253,21 @@ https://code.visualstudio.com/docs/python/python-tutorial
 When you open an existing ROS2 Python project, IntelliSense does not find your ROS2 Python modules or your local package modules. To solve the issue, create a file `settings.json` with content matching roughly the following:
 
 ```yaml
-{
-    // This is used by IntelliSense for autocompletion and signatures.
-    "python.autoComplete.extraPaths": [
-        "/opt/ros/humble/lib/python3.10/site-packages", 
-        "/opt/ros/humble/local/lib/python3.10/dist-packages",
-        "/my_project/build/package1",
-        "/my_project/build/package2"
-    ],
-    // This is used for static code analysis.
-    "python.analysis.extraPaths": [
-        "/opt/ros/humble/lib/python3.10/site-packages", 
-        "/opt/ros/humble/local/lib/python3.10/dist-packages",
-        "/my_project/build/package1",
-        "/my_project/build/package2"
-    ]
-}
+{ ? // This is used by IntelliSense for autocompletion and signatures.
+    "python.autoComplete.extraPaths"
+  : [
+      "/opt/ros/humble/lib/python3.10/site-packages",
+      "/opt/ros/humble/local/lib/python3.10/dist-packages",
+      "/my_project/build/package1",
+      "/my_project/build/package2",
+    ], ? // This is used for static code analysis.
+    "python.analysis.extraPaths"
+  : [
+      "/opt/ros/humble/lib/python3.10/site-packages",
+      "/opt/ros/humble/local/lib/python3.10/dist-packages",
+      "/my_project/build/package1",
+      "/my_project/build/package2",
+    ] }
 ```
 
 All Python dependencies are stored in the environment variable `PYTHONPATH`. Unfortunately, VSCode does not use it. To get the list of all libraries, source your project and type the following bash command:
@@ -275,7 +278,7 @@ IFS=:; for path in $PYTHONPATH; do echo "\"$path\","; done
 
 ### Sorting imports
 
-To sort imports in a Python module, open the command palette and type *"Organize imports"*. You can also use the following shortcut:
+To sort imports in a Python module, open the command palette and type _"Organize imports"_. You can also use the following shortcut:
 
 `Shif + Alt + O`
 
@@ -285,22 +288,25 @@ To debug a normal Python file, you must create a `launch.json` file inside your 
 
 ```yaml
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Python: Current File",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
-            "args": [""], // Only if you need parameters
-            "console": "integratedTerminal",
-            "justMyCode": true
-        }
-    ]
+  "version": "0.2.0",
+  "configurations":
+    [
+      {
+        "name": "Python: Current File",
+        "type": "python",
+        "request": "launch",
+        "program": "${file}",
+        "args": [""],
+        ? // Only if you need parameters
+          "console"
+        : "integratedTerminal",
+        "justMyCode": true,
+      },
+    ],
 }
 ```
 
-To debug a ROS2 Python launch file, you can open a command palette and type *"ROS: Run a ROS launch file (roslaunch)"* to add a new launch configuration to your `launch.json`. You can also add it manually.
+To debug a ROS2 Python launch file, you can open a command palette and type _"ROS: Run a ROS launch file (roslaunch)"_ to add a new launch configuration to your `launch.json`. You can also add it manually.
 
 ```yaml
 {
@@ -379,37 +385,37 @@ my_param.perform(context)
 
 ### General
 
-* **Back & Forth:** Extension to add go back/forward buttons to the title bar for easier navigation through recent edit locations and opened files.
+- **Back & Forth:** Extension to add go back/forward buttons to the title bar for easier navigation through recent edit locations and opened files.
 
-* **CodeSnap:** Extension to take screenshots of your code.
+- **CodeSnap:** Extension to take screenshots of your code.
 
-* **Debug Visualizer:** Extension for visualizing data structures while debugging. Like the watch view, but with rich visualizations of the watched value.
+- **Debug Visualizer:** Extension for visualizing data structures while debugging. Like the watch view, but with rich visualizations of the watched value.
 
-* **Error Lens:** Extension to better display errors in the code.
+- **Error Lens:** Extension to better display errors in the code.
 
-* **Markdown All in One:** Extension for Markdown advanced editing. It adds a document outline, automatic table of contents, etc.
+- **Markdown All in One:** Extension for Markdown advanced editing. It adds a document outline, automatic table of contents, etc.
 
-* **Microsoft Live Share:** Extension to share your editor for real-time collaborative development.
+- **Microsoft Live Share:** Extension to share your editor for real-time collaborative development.
 
-* **Protobuf (Protocol Buffers):** Extension to add Protobuf support, powered by Pbkit language server.
+- **Protobuf (Protocol Buffers):** Extension to add Protobuf support, powered by Pbkit language server.
 
-* **Task Runner (forbeslindesay v1.0.0):** Extension to display tasks to run on the left panel.
+- **Task Runner (forbeslindesay v1.0.0):** Extension to display tasks to run on the left panel.
 
-* **UMLet:** Draw UML diagrams inside VSCode.
+- **UMLet:** Draw UML diagrams inside VSCode.
 
 ### Python
 
-* **Astral Software Ruff:** Support for the Ruff linter.
+- **Astral Software Ruff:** Support for the Ruff linter.
 
-* **Debug Launcher:** Start debugging without having to define any tasks or launch configurations, even from the terminal.
+- **Debug Launcher:** Start debugging without having to define any tasks or launch configurations, even from the terminal.
 
-* **Microsoft Black Formatter:** An automatic Python code formatted.
+- **Microsoft Black Formatter:** An automatic Python code formatted.
 
-* **Microsoft Jupyter:** Extension to edit and run Jupyter notebooks.
+- **Microsoft Jupyter:** Extension to edit and run Jupyter notebooks.
 
-* **Microsoft Pylint**:  Support for the Pylint linter.
+- **Microsoft Pylint**: Support for the Pylint linter.
 
-* **Microsoft Pylance**: This is a powerful tool that enhances the Python development experience in Visual Studio Code by providing tools for code analysis, error checking, code navigation, and code completion. 
+- **Microsoft Pylance**: This is a powerful tool that enhances the Python development experience in Visual Studio Code by providing tools for code analysis, error checking, code navigation, and code completion.
 
 ## Additional Resources
 
