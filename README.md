@@ -77,14 +77,14 @@ To run the `colcon` command from VSCode, you need to create a `task.json` file w
           "type": "colcon",
           "group": "build",
           "args": [
-            "build",
-            "--symlink-install",
-            "--event-handlers",
-            "console_cohesion+",
-            "--base-paths",
-            "project-workspace",
-            "--cmake-args",
-            "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+              "build",
+              "--symlink-install",
+              "--event-handlers",
+              "console_cohesion+",
+              "--base-paths",
+              "project-workspace",
+              "--cmake-args",
+              "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
           ]
         },
         {
