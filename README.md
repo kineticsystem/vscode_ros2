@@ -127,7 +127,6 @@ To run the `colcon` command from VSCode, you need to create a `task.json` file w
                 "cd project-workspace;",
                 "rm -rf build/ install/ log/;"
             ]
-            "problemMatcher": []
         },
         {
             "label": "colcon: test",
@@ -253,7 +252,7 @@ https://code.visualstudio.com/docs/python/python-tutorial
 When you open an existing ROS2 Python project, IntelliSense does not find your ROS2 Python modules or your local package modules. To solve the issue, create a file `settings.json` with content matching roughly the following:
 
 ```yaml
-{ ? // This is used by IntelliSense for autocompletion and signatures.
+{ // This is used by IntelliSense for autocompletion and signatures.
     "python.autoComplete.extraPaths"
   : [
       "/opt/ros/humble/lib/python3.10/site-packages",
@@ -401,7 +400,7 @@ my_param.perform(context)
 
 - **Protobuf (Protocol Buffers):** Extension to add Protobuf support, powered by Pbkit language server.
 
-- **Task Runner (forbeslindesay v1.0.0):** Extension to display tasks to run on the left panel.
+- **Task Runner Plus:** Extension to display and execute tasks displayed on the explorer panel.
 
 - **UMLet:** Draw UML diagrams inside VSCode.
 
