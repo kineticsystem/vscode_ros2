@@ -121,7 +121,7 @@ To run the `colcon` command from VSCode, you need to create a `task.json` file w
             ]
         },
         {
-            "label": "Colcon: clean",
+            "label": "colcon: clean",
             "type": "shell",
             "command": [
                 "cd project-workspace;",
@@ -130,7 +130,7 @@ To run the `colcon` command from VSCode, you need to create a `task.json` file w
             "problemMatcher": []
         },
         {
-            "label": "Colcon: test",
+            "label": "colcon: test",
             "type": "shell",
             "command": [
                 "cd project-workspace;",
