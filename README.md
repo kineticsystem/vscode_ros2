@@ -392,6 +392,8 @@ my_param.perform(context)
 
 - **Error Lens:** Extension to better display errors in the code.
 
+- **Favorites (Howard Zuo):** Mark resources (files or folders, local and remote) as favorites, so they can be easily accessed.
+
 - **Markdown All in One:** Extension for Markdown advanced editing. It adds a document outline, automatic table of contents, etc.
 
 - **Microsoft Live Preview:** Hosts a local server in your workspace for you to preview your webpages on.
