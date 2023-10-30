@@ -400,7 +400,7 @@ my_param.perform(context)
 
 - **Protobuf (Protocol Buffers):** Extension to add Protobuf support, powered by Pbkit language server.
 
-- **Task Runner Plus:** Extension to display and execute tasks displayed on the explorer panel.
+- **Task Explorer:** Extension to display and execute tasks displayed on the explorer panel.
 
 - **UMLet:** Draw UML diagrams inside VSCode.
 
