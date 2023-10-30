@@ -395,6 +395,8 @@ my_param.perform(context)
 
 - **Markdown All in One:** Extension for Markdown advanced editing. It adds a document outline, automatic table of contents, etc.
 
+- **Microsoft Live Preview:** Hosts a local server in your workspace for you to preview your webpages on.
+
 - **Microsoft Live Share:** Extension to share your editor for real-time collaborative development.
 
 - **Protobuf (Protocol Buffers):** Extension to add Protobuf support, powered by Pbkit language server.
