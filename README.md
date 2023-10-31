@@ -293,10 +293,8 @@ To debug a normal Python file, you must create a `launch.json` file inside your 
         "type": "python",
         "request": "launch",
         "program": "${file}",
-        "args": [""],
-        ? // Only if you need parameters
-          "console"
-        : "integratedTerminal",
+        "args": [""], // Only if you need parameters
+        "console": "integratedTerminal",
         "justMyCode": true,
       },
     ],
