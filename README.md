@@ -4,26 +4,24 @@
 
 This documentation outlines the procedures for setting up Visual Studio Code (VSCode) to build and execute ROS2 projects effectively.
 
-## Table of Contents
+## Table of Contents <!-- omit from toc -->
 
-- [ROS2 and VSCode](#ros2-and-vscode)
-  - [Table of Contents](#table-of-contents)
-  - [Initialization of Visual Studio Code](#initialization-of-visual-studio-code)
-  - [Remote development over SSH](#remote-development-over-ssh)
-  - [Development on Docker](#development-on-docker)
-  - [Sourcing your ROS Dependencies](#sourcing-your-ros-dependencies)
-  - [How to build with Colcon](#how-to-build-with-colcon)
-  - [Working in C++](#working-in-c)
-    - [Navigation and Shortcuts](#navigation-and-shortcuts)
-    - [Debugging tests](#debugging-tests)
-  - [Working in Python](#working-in-python)
-    - [Intellisense](#intellisense)
-    - [Sorting imports](#sorting-imports)
-    - [Debugging Python files](#debugging-python-files)
-  - [Additional extensions](#additional-extensions)
-    - [General](#general)
-    - [Python](#python)
-  - [Additional Resources](#additional-resources)
+- [Initialization of Visual Studio Code](#initialization-of-visual-studio-code)
+- [Remote development over SSH](#remote-development-over-ssh)
+- [Development on Docker](#development-on-docker)
+- [Sourcing your ROS Dependencies](#sourcing-your-ros-dependencies)
+- [How to build with Colcon](#how-to-build-with-colcon)
+- [Working in C++](#working-in-c)
+  - [Navigation and Shortcuts](#navigation-and-shortcuts)
+  - [Debugging tests](#debugging-tests)
+- [Working in Python](#working-in-python)
+  - [Intellisense](#intellisense)
+  - [Sorting imports](#sorting-imports)
+  - [Debugging Python files](#debugging-python-files)
+- [Additional extensions](#additional-extensions)
+  - [General](#general)
+  - [Python](#python)
+- [Additional Resources](#additional-resources)
 
 ## Initialization of Visual Studio Code
 
@@ -394,11 +392,15 @@ my_param.perform(context)
 
 - **Favorites (Howard Zuo):** Mark resources (files or folders, local and remote) as favorites, so they can be easily accessed.
 
+- **Git History (Don Jayamanne):** View git log, file history, compare branches or commits.
+
 - **Markdown All in One:** Extension for Markdown advanced editing. It adds a document outline, automatic table of contents, etc.
 
 - **Microsoft Live Preview:** Hosts a local server in your workspace for you to preview your webpages on.
 
 - **Microsoft Live Share:** Extension to share your editor for real-time collaborative development.
+
+- **Bookmarks (Alessandro Fragnani):** Mark lines of codes and later jump to them.
 
 - **Protobuf (Protocol Buffers):** Extension to add Protobuf support, powered by Pbkit language server.
 
