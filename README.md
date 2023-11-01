@@ -57,8 +57,7 @@ Open the command palette and type: "Remote-SSH: Connect to Host...".
 
 VSCode can be used to develop on Docker. You must install an extension called [Microsoft Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers), which you can use to connect to running containers. With this extension, you can also install your local VSCode extensions into the container in one click.
 
-<img height="80px" src="img/dev_container_extension.svg">
-<img height="80px" src="img/docker_extension.svg">
+<img height="80px" src="img/dev_container_extension.svg"><img height="80px" src="img/docker_extension.svg">
 
 You should also install the extension called [Microsoft Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker), which allows you to work with containers and images.
 
