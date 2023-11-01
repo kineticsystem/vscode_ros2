@@ -61,7 +61,7 @@ VSCode can be used to develop on Docker. You must install an extension called [M
 
 You should also install the extension called [Microsoft Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker), which allows you to work with containers and images.
 
-More information [here](https://code.visualstudio.com/docs/devcontainers/attach-container). 
+For more information, see VSCode document [Attach to a running container](https://code.visualstudio.com/docs/devcontainers/attach-container). 
 
 ## Sourcing your ROS Dependencies
 
@@ -419,5 +419,5 @@ my_param.perform(context)
 
 For additional information about ROS2 and VSCode, you may refer to the following tutorials:
 
-- https://www.youtube.com/watch?v=hf76VY0a5Fk
-- https://www.allisonthackston.com/articles/vscode-docker-ros2.html
+- [Configure VS Code for ROS2](https://www.youtube.com/watch?v=hf76VY0a5Fk)
+- [VSCode, Docker, and ROS2](https://www.allisonthackston.com/articles/vscode-docker-ros2.html)
