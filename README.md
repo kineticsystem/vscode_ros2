@@ -31,15 +31,15 @@ For the purpose of this guide, it is presumed that Visual Studio Code has alread
 ~/.vscode
 ```
 
-Upon launching VSCode, proceed to install the Microsoft ROS extension, followed by a restart of the editor.
+Upon launching VSCode, proceed to install the [Microsoft ROS extension](https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros), followed by a restart of the editor.
 
 <img height="80px" src="img/ros_extension.svg">
 
-This extension will facilitate the installation of requisite dependencies such as Microsoft C/C++ and Microsoft Python extensions.
+This extension will facilitate the installation of requisite dependencies such as [Microsoft C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) and [Microsoft Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) extensions.
 
 <img height="80px" src="img/cpp_extension.svg"><img height="80px" src="img/python_extension.svg">
 
-Install the "C/C++ Extension Pack" which provides Intellisense and C++ file navigation. This will install the CMake extension from twsx too.
+Install the [C/C++ Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack) which provides Intellisense and C++ file navigation. This will install the [CMake extension](https://marketplace.visualstudio.com/items?itemName=twxs.cmake) too.
 
 <img height="80px" src="img/cmake_extension.svg">
 
@@ -47,7 +47,7 @@ You may need to enable Intellisense in your VSCode Preferences Settings.
 
 ## Remote development over SSH
 
-VSCode can be used to develop remotely over SSH. You must install an extension called Microsoft Remote SSH. This extension will also add a button on the left toolbar to display all available Docker containers.
+VSCode can be used to develop remotely over SSH. You must install an extension called [Microsoft Remote SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh). This extension will also add a button on the left toolbar to display all available Docker containers.
 
 <img height="80px" src="img/ssh_extension.svg">
 
@@ -55,9 +55,12 @@ Open the command palette and type: "Remote-SSH: Connect to Host...".
 
 ## Development on Docker
 
-VSCode can be used to develop on Docker. You must install an extension called Microsoft Dev Containers, which you can use to connect to running containers. You can easily install your local VSCode extensions into the container.
+VSCode can be used to develop on Docker. You must install an extension called [Microsoft Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) which you can use to connect to running containers. With this extension, you can also install your local VSCode extensions into the container in one click.
 
 <img height="80px" src="img/dev_container_extension.svg">
+<img height="80px" src="img/docker_extension.svg">
+
+You should also instal the extension called [Microsoft Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) which allows you to work with containers and images.
 
 More information here: https://code.visualstudio.com/docs/devcontainers/attach-container
 
@@ -196,7 +199,7 @@ You may conveniently toggle between `.cpp` and `.hpp` files using the following 
 
 ### Debugging tests
 
-Another useful extension is "C++ TestMate" to launch and debug GTests directly within VSCode.
+Another useful extension is [C++ TestMate](https://marketplace.visualstudio.com/items?itemName=matepek.vscode-catch2-test-adapter) to launch and debug GTests directly within VSCode.
 
 <img height="80px" src="img/testmate_extension.svg">
 
@@ -380,45 +383,45 @@ my_param.perform(context)
 
 ### General
 
-- **Back & Forth:** Extension to add go back/forward buttons to the title bar for easier navigation through recent edit locations and opened files.
+- [Back & Forth](https://marketplace.visualstudio.com/items?itemName=nick-rudenko.back-n-forth): Extension to add go back/forward buttons to the title bar for easier navigation through recent edit locations and opened files.
 
-- **CodeSnap:** Extension to take screenshots of your code.
+- [Bookmarks](https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks): Mark lines of codes and later jump to them.
 
-- **Debug Visualizer:** Extension for visualizing data structures while debugging. Like the watch view, but with rich visualizations of the watched value.
+- [CodeSnap](https://marketplace.visualstudio.com/items?itemName=adpyke.codesnap): Extension to take screenshots of your code.
 
-- **Error Lens:** Extension to better display errors in the code.
+- [Debug Visualizer](https://marketplace.visualstudio.com/items?itemName=hediet.debug-visualizer): Extension for visualizing data structures while debugging. Like the watch view, but with rich visualizations of the watched value.
 
-- **Favorites (Howard Zuo):** Mark resources (files or folders, local and remote) as favorites, so they can be easily accessed.
+- [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens): Extension to better display errors in the code.
 
-- **Git History (Don Jayamanne):** View git log, file history, compare branches or commits.
+- [Favorites](https://marketplace.visualstudio.com/items?itemName=howardzuo.vscode-favorites): Mark resources (files or folders, local and remote) as favorites, so they can be easily accessed.
 
-- **Markdown All in One:** Extension for Markdown advanced editing. It adds a document outline, automatic table of contents, etc.
+- [Git History](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory): View git log, file history, compare branches or commits.
 
-- **Microsoft Live Preview:** Hosts a local server in your workspace for you to preview your webpages on.
+- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one): Extension for Markdown advanced editing. It adds a document outline, automatic table of contents, etc.
 
-- **Microsoft Live Share:** Extension to share your editor for real-time collaborative development.
+- [Microsoft Live Preview](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server): Hosts a local server in your workspace for you to preview your webpages on.
 
-- **Bookmarks (Alessandro Fragnani):** Mark lines of codes and later jump to them.
+- [Microsoft Live Share](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare): Extension to share your editor for real-time collaborative development.
 
-- **Protobuf (Protocol Buffers):** Extension to add Protobuf support, powered by Pbkit language server.
+- [Protobuf (Protocol Buffers)](https://marketplace.visualstudio.com/items?itemName=pbkit.vscode-pbkit): Extension to add Protobuf support, powered by Pbkit language server.
 
-- **Task Explorer:** Extension to display and execute tasks displayed on the explorer panel.
+- [Task Explorer](https://marketplace.visualstudio.com/items?itemName=spmeesseman.vscode-taskexplorer): Extension to display and execute tasks displayed on the explorer panel.
 
-- **UMLet:** Draw UML diagrams inside VSCode.
+- [UMLet](https://marketplace.visualstudio.com/items?itemName=TheUMLetTeam.umlet): Draw UML diagrams inside VSCode.
 
 ### Python
 
-- **Astral Software Ruff:** Support for the Ruff linter.
+- [Astral Software Ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff): Support for the Ruff linter.
 
-- **Debug Launcher:** Start debugging without having to define any tasks or launch configurations, even from the terminal.
+- [Debug Launcher](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-debug-launcher): Start debugging without having to define any tasks or launch configurations, even from the terminal.
 
-- **Microsoft Black Formatter:** An automatic Python code formatted.
+- [Microsoft Black Formatter](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter): An automatic Python code formatted.
 
-- **Microsoft Jupyter:** Extension to edit and run Jupyter notebooks.
+- [Microsoft Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter): Extension to edit and run Jupyter notebooks.
 
-- **Microsoft Pylint**: Support for the Pylint linter.
+- [Microsoft Pylint](https://marketplace.visualstudio.com/items?itemName=ms-python.pylint): Support for the Pylint linter.
 
-- **Microsoft Pylance**: This is a powerful tool that enhances the Python development experience in Visual Studio Code by providing tools for code analysis, error checking, code navigation, and code completion.
+- [Microsoft Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance): This is a powerful tool that enhances the Python development experience in Visual Studio Code by providing tools for code analysis, error checking, code navigation, and code completion.
 
 ## Additional Resources
 
