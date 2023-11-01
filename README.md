@@ -254,15 +254,13 @@ When you open an existing ROS2 Python project, IntelliSense does not find your R
 
 ```json
 {
-    "python.autoComplete.extraPaths"
-  : [
+    "python.autoComplete.extraPaths": [
       "/opt/ros/humble/lib/python3.10/site-packages",
       "/opt/ros/humble/local/lib/python3.10/dist-packages",
       "/my_project/build/package1",
       "/my_project/build/package2",
     ],
-    "python.analysis.extraPaths"
-  : [
+    "python.analysis.extraPaths": [
       "/opt/ros/humble/lib/python3.10/site-packages",
       "/opt/ros/humble/local/lib/python3.10/dist-packages",
       "/my_project/build/package1",
