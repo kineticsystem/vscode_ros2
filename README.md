@@ -25,13 +25,13 @@ This documentation outlines the procedures for setting up Visual Studio Code (VS
 
 ## Initialization of Visual Studio Code 
 
-For the purpose of this guide, it is presumed that Visual Studio Code has already been installed on your system without any additional extensions. In an Ubuntu environment, the extensions are commonly stored in the following directory:
+For this guide, it is presumed that Visual Studio Code has already been installed on your system without additional extensions. In an Ubuntu environment, the extensions are commonly stored in the following directory:
 
 ```
 ~/.vscode
 ```
 
-Upon launching VSCode, proceed to install the [Microsoft ROS extension](https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros), followed by a restart of the editor.
+Upon launching VSCode, install the [Microsoft ROS extension](https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros), followed by a restart of the editor.
 
 <img height="80px" src="img/ros_extension.svg">
 
@@ -39,7 +39,7 @@ This extension will facilitate the installation of requisite dependencies such a
 
 <img height="80px" src="img/cpp_extension.svg"><img height="80px" src="img/python_extension.svg">
 
-Install the [C/C++ Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack) which provides Intellisense and C++ file navigation. This will install the [CMake extension](https://marketplace.visualstudio.com/items?itemName=twxs.cmake) too.
+Install the [C/C++ Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack), which provides Intellisense and C++ file navigation. This will install the [CMake extension](https://marketplace.visualstudio.com/items?itemName=twxs.cmake) too.
 
 <img height="80px" src="img/cmake_extension.svg">
 
@@ -55,14 +55,14 @@ Open the command palette and type: "Remote-SSH: Connect to Host...".
 
 ## Development on Docker
 
-VSCode can be used to develop on Docker. You must install an extension called [Microsoft Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) which you can use to connect to running containers. With this extension, you can also install your local VSCode extensions into the container in one click.
+VSCode can be used to develop on Docker. You must install an extension called [Microsoft Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers), which you can use to connect to running containers. With this extension, you can also install your local VSCode extensions into the container in one click.
 
 <img height="80px" src="img/dev_container_extension.svg">
 <img height="80px" src="img/docker_extension.svg">
 
-You should also instal the extension called [Microsoft Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) which allows you to work with containers and images.
+You should also install the extension called [Microsoft Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker), which allows you to work with containers and images.
 
-More information here: https://code.visualstudio.com/docs/devcontainers/attach-container
+More information [here](https://code.visualstudio.com/docs/devcontainers/attach-container). 
 
 ## Sourcing your ROS Dependencies
 
@@ -347,7 +347,7 @@ if __name__ == '__main__':
     main()
 ```
 
-Using an "opaque function" allows you to debug the values of launch parameters. However, together with the previous change, you'll need to modify the launch file, as demonstrated in the following example.
+Using an "opaque function" allows you to debug the values of launch parameters. However, with the previous change, you'll need to modify the launch file, as demonstrated in the following example.
 
 ```python
 def launch_setup(context, *args, **kwargs):
@@ -376,7 +376,7 @@ my_param.perform(context)
 
 ### General
 
-- [Back & Forth](https://marketplace.visualstudio.com/items?itemName=nick-rudenko.back-n-forth): Extension to add go back/forward buttons to the title bar for easier navigation through recent edit locations and opened files.
+- [Back & Forth](https://marketplace.visualstudio.com/items?itemName=nick-rudenko.back-n-forth): Extension to add go back/forward buttons to the title bar for more straightforward navigation through recent edit locations and opened files.
 
 - [Bookmarks](https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks): Mark lines of codes and later jump to them.
 
@@ -392,7 +392,7 @@ my_param.perform(context)
 
 - [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one): Extension for Markdown advanced editing. It adds a document outline, automatic table of contents, etc.
 
-- [Microsoft Live Preview](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server): Hosts a local server in your workspace for you to preview your webpages on.
+- [Microsoft Live Preview](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server): Hosts a local server in your workspace to preview your webpages on.
 
 - [Microsoft Live Share](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare): Extension to share your editor for real-time collaborative development.
 
