@@ -1,4 +1,4 @@
-# ROS2 and VSCode
+# ROS2 and VSCode <!-- omit from toc -->
 
 <img height="70px" src="img/visual_studio_code.svg">
 
@@ -23,7 +23,7 @@ This documentation outlines the procedures for setting up Visual Studio Code (VS
   - [Python](#python)
 - [Additional Resources](#additional-resources)
 
-## Initialization of Visual Studio Code
+## Initialization of Visual Studio Code 
 
 For the purpose of this guide, it is presumed that Visual Studio Code has already been installed on your system without any additional extensions. In an Ubuntu environment, the extensions are commonly stored in the following directory:
 
