@@ -311,14 +311,12 @@ To debug a ROS2 Python launch file, you can open a command palette and type _"RO
 {
     "version": "0.2.0",
     "configurations": [
-        ...
         {
             "name": "ROS: Launch",
             "type": "ros",
             "request": "launch",
             "target": "/absolute-path/launch-file.py"
-        },
-        ...
+        }
     ]
 }
 ```
@@ -329,14 +327,11 @@ The ROS2 extension allows you to debug a running node as well.
 {
     "version": "0.2.0",
     "configurations": [
-        ...
-        {
         {
             "name": "ROS: Attach",
             "type": "ros",
             "request": "attach"
-        },
-        ...
+        }
     ]
 }
 ```
@@ -368,7 +363,6 @@ def generate_launch_description():
                 default_value="param_value",
                 description=("param_description"),
             ),
-            ...,
             OpaqueFunction(function=launch_setup),
         ]
     )
