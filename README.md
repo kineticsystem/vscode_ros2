@@ -88,7 +88,7 @@ You want to execute a `source` command every time VSCode opens the container. Th
 
 Add the following field to modify the `.bashrc` each time you connect VSCode to the container. `TAG` is a unique ID to verify if the command has already been added.
 
-```yaml
+```json
 "postAttachCommand": "grep -qF 'TAG' $HOME/.bashrc || echo 'source project-workspace/install/setup.bash # TAG' >> $HOME/.bashrc"
 ```
 
@@ -102,7 +102,7 @@ $HOME/.config/Code/User/globalStorage/ms-vscode-remote.remote-containers/
 
 To run the `colcon` command from VSCode, you need to create a `task.json` file within the `.vscode` folder and populate it with the following content:
 
-```yaml
+```json
 {
     "version": "2.0.0",
     "tasks": [
@@ -164,7 +164,7 @@ settings.json
 If `c_cpp_properties.json` is not created, you can create a new one by opening the command palette and typing _"C++: Edit Configurations (UI)"_.
 Update it to match roughly the following content:
 
-```yaml
+```json
 {
   "configurations":
     [
@@ -209,7 +209,7 @@ Please note that for this extension to work correctly, you may need to source yo
 
 To debug your test, you must create a `launch.json` file inside your `.vscode` directory. The file is automatically created for you when you debug your first test.
 
-```yaml
+```json
 {
   "version": "0.2.0",
   "configurations":
@@ -252,22 +252,23 @@ https://code.visualstudio.com/docs/python/python-tutorial
 
 When you open an existing ROS2 Python project, IntelliSense does not find your ROS2 Python modules or your local package modules. To solve the issue, create a file `settings.json` with content matching roughly the following:
 
-```yaml
-{ // This is used by IntelliSense for autocompletion and signatures.
+```json
+{
     "python.autoComplete.extraPaths"
   : [
       "/opt/ros/humble/lib/python3.10/site-packages",
       "/opt/ros/humble/local/lib/python3.10/dist-packages",
       "/my_project/build/package1",
       "/my_project/build/package2",
-    ], ? // This is used for static code analysis.
+    ],
     "python.analysis.extraPaths"
   : [
       "/opt/ros/humble/lib/python3.10/site-packages",
       "/opt/ros/humble/local/lib/python3.10/dist-packages",
       "/my_project/build/package1",
       "/my_project/build/package2",
-    ] }
+    ] 
+}
 ```
 
 All Python dependencies are stored in the environment variable `PYTHONPATH`. Unfortunately, VSCode does not use it. To get the list of all libraries, source your project and type the following bash command:
@@ -286,7 +287,7 @@ To sort imports in a Python module, open the command palette and type _"Organize
 
 To debug a normal Python file, you must create a `launch.json` file inside your `.vscode` directory.
 
-```yaml
+```json
 {
   "version": "0.2.0",
   "configurations":
@@ -296,7 +297,7 @@ To debug a normal Python file, you must create a `launch.json` file inside your 
         "type": "python",
         "request": "launch",
         "program": "${file}",
-        "args": [""], // Only if you need parameters
+        "args": [""],
         "console": "integratedTerminal",
         "justMyCode": true,
       },
@@ -306,7 +307,7 @@ To debug a normal Python file, you must create a `launch.json` file inside your 
 
 To debug a ROS2 Python launch file, you can open a command palette and type _"ROS: Run a ROS launch file (roslaunch)"_ to add a new launch configuration to your `launch.json`. You can also add it manually.
 
-```yaml
+```json
 {
     "version": "0.2.0",
     "configurations": [
@@ -324,7 +325,7 @@ To debug a ROS2 Python launch file, you can open a command palette and type _"RO
 
 The ROS2 extension allows you to debug a running node as well.
 
-```yaml
+```json
 {
     "version": "0.2.0",
     "configurations": [
