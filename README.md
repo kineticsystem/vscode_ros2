@@ -107,17 +107,14 @@ To run the `colcon` command from VSCode, you need to create the file `tasks.json
     "tasks": [
         {
             "label": "colcon: build (debug)",
-            "type": "colcon",
-            "group": "build",
-            "args": [
-                "build",
+            "type": "shell",
+            "command": [
+                "source /opt/ros/humble/setup.bash;",
+                "colcon build",
                 "--symlink-install",
-                "--event-handlers",
-                "console_cohesion+",
-                "--base-paths",
-                "project-workspace",
-                "--cmake-args",
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+                "--event-handlers console_cohesion+",
+                "--base-paths /workspaces/bdai/ws",
+                "--cmake-args -DCMAKE_BUILD_TYPE=Debug"
             ]
         },
         {
@@ -142,6 +139,29 @@ To run the `colcon` command from VSCode, you need to create the file `tasks.json
     ]
 }
 ```
+
+To build a package, this may also work.
+
+```json
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "colcon: build (debug)",
+            "type": "colcon",
+            "group": "build",
+            "args": [
+                "build",
+                "--symlink-install",
+                "--event-handlers console_cohesion+",
+                "--base-paths project-workspace",
+                "--cmake-args -DCMAKE_BUILD_TYPE=Debug"
+            ]
+        }
+    ]
+}
+```
+
 
 Modify the file according to your ROS2 distribution and project location.
 
