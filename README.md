@@ -99,7 +99,7 @@ $HOME/.config/Code/User/globalStorage/ms-vscode-remote.remote-containers/
 
 ## How to build with Colcon
 
-To run the `colcon` command from VSCode, you need to create a `task.json` file within the `.vscode` folder and populate it with the following content:
+To run the `colcon` command from VSCode, you need to create the file `tasks.json` within the `.vscode` folder and populate it with the following content:
 
 ```json
 {
