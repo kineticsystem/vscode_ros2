@@ -198,6 +198,7 @@ Update it to match roughly the following content:
             "${workspaceFolder}/**",
             "/opt/ros/humble/include/**",
             "/usr/include/**",
+            "add here your project include files"
           ],
         "name": "ROS",
         "intelliSenseMode": "gcc-x64",
