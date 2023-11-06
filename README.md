@@ -395,8 +395,6 @@ my_param.perform(context)
 
 ### General
 
-- [Back & Forth](https://marketplace.visualstudio.com/items?itemName=nick-rudenko.back-n-forth): Extension to add go back/forward buttons to the title bar for more straightforward navigation through recent edit locations and opened files.
-
 - [Bookmarks](https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks): Mark lines of codes and later jump to them.
 
 - [CodeSnap](https://marketplace.visualstudio.com/items?itemName=adpyke.codesnap): Extension to take screenshots of your code.
@@ -416,6 +414,8 @@ my_param.perform(context)
 - [Microsoft Live Share](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare): Extension to share your editor for real-time collaborative development.
 
 - [Protobuf (Protocol Buffers)](https://marketplace.visualstudio.com/items?itemName=pbkit.vscode-pbkit): Extension to add Protobuf support, powered by Pbkit language server.
+
+- [Shortcut Menu Bar](https://marketplace.visualstudio.com/items?itemName=jerrygoyal.shortcut-menu-bar): Extension to add some useful toolbar buttons like go back/forward buttons, switch between headers and cpp files and more.
 
 - [Task Explorer](https://marketplace.visualstudio.com/items?itemName=spmeesseman.vscode-taskexplorer): Extension to display and execute tasks displayed on the explorer panel.
 
