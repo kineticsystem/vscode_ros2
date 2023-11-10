@@ -195,7 +195,6 @@ Update it to match roughly the following content:
           },
         "includePath":
           [
-            "${workspaceFolder}/**",
             "/opt/ros/humble/include/**",
             "/usr/include/**",
             "add here your project include files"
@@ -204,12 +203,14 @@ Update it to match roughly the following content:
         "intelliSenseMode": "gcc-x64",
         "compilerPath": "/usr/bin/gcc",
         "cStandard": "gnu11",
-        "cppStandard": "c++17",
+        "cppStandard": "c++17 ",
       },
     ],
   "version": 4,
 }
 ```
+
+**:warning:Warning:** Do not implicitly add the include files of your install folder, for example, by adding `"${workspaceFolder}/**"` to your include path. This will seriously confuse Intellisense and yourself when developing.
 
 ### Navigation and Shortcuts
 
