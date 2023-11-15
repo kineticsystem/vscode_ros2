@@ -212,6 +212,15 @@ Update it to match roughly the following content:
 
 **:warning:Warning:** Do not implicitly add the include files of your install folder, for example, by adding `"${workspaceFolder}/**"` to your include path. This will seriously confuse Intellisense and yourself when developing.
 
+There are two additional parameters worth mentioning.
+
+```json
+"configurationProvider": "ms-vscode.cmake-tools",
+"compileCommands": "${workspaceFolder}/build/compile_commands.json"
+```
+
+If you can build your application with Colcon before opening VSCode, you can use the generated file `compile_commands.json` to feed Intellisense. This configuration overrides the `includePath` parameter. It is more precise but requires a build folder, which is not always the case.
+
 ### Navigation and Shortcuts
 
 You may conveniently toggle between `.cpp` and `.hpp` files using the following keyboard shortcut:
