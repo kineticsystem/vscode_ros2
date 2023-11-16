@@ -18,6 +18,8 @@ This documentation outlines the procedures for setting up Visual Studio Code (VS
   - [Intellisense](#intellisense)
   - [Sorting imports](#sorting-imports)
   - [Debugging Python files](#debugging-python-files)
+- [Tips](#tips)
+  - [Highlight current tab](#highlight-current-tab)
 - [Additional extensions](#additional-extensions)
   - [General](#general)
   - [Python](#python)
@@ -400,6 +402,19 @@ In VSCode, we can add a breakpoint and display the content of this variable with
 
 ```python
 my_param.perform(context)
+```
+
+## Tips
+
+### Highlight current tab
+
+Add the following to your configuration file `settings.json`:
+
+```json
+  "workbench.colorCustomizations": {
+      "tab.activeBorder": "#ffffff",
+      "tab.activeBackground": "#373737"
+  }
 ```
 
 ## Additional extensions
