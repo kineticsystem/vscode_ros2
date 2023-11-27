@@ -115,7 +115,7 @@ To run the `colcon` command from VSCode, you need to create the file `tasks.json
                 "colcon build",
                 "--symlink-install",
                 "--event-handlers console_cohesion+",
-                "--base-paths /workspaces/bdai/ws",
+                "--base-paths workspace-path",
                 "--cmake-args -DCMAKE_BUILD_TYPE=Debug"
             ]
         },
