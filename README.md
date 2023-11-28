@@ -235,9 +235,7 @@ Another useful extension is [C++ TestMate](https://marketplace.visualstudio.com/
 
 <img height="80px" src="img/testmate_extension.svg">
 
-Please note that for this extension to work correctly, you may need to source your ROS repository before starting up VSCode from the terminal.
-
-`source install/setup.bash; code .`
+Please note that, for this extension to work correctly, you may need to source your ROS repository before starting up VSCode.
 
 To debug your test, you must create a `launch.json` file inside your `.vscode` directory. The file is automatically created for you when you debug your first test.
 
