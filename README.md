@@ -248,13 +248,14 @@ To debug your test, you must create a `launch.json` file inside your `.vscode` d
         "name": "GDP: launch",
         "type": "cppdbg",
         "request": "launch",
-        "program": "enter program name, for example, ${workspaceFolder}/a.out",
+        "program": "enter program name, for example, ${workspaceFolder}/../build/path_to_executable",
         "args": [],
         "stopAtEntry": false,
         "cwd": "${fileDirname}",
         "environment": [],
         "externalConsole": false,
         "MIMode": "gdb",
+        "preLaunchTask": "add your build task here. e.g. colcon: build",
         "setupCommands":
           [
             {
