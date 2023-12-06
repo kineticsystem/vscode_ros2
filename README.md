@@ -365,6 +365,15 @@ The ROS2 extension allows you to debug a running node as well.
 }
 ```
 
+Remember to add the following additional argument to your node in the launch file:
+
+```python
+my_node = launch_ros.actions.Node(
+    ...
+    prefix=["gdbserver :3000"],
+)
+```
+
 Following is a more complex solution that requires you to modify the Python file. Add this code to the end of the launch file to convert it to a normal Python file:
 
 ```python
