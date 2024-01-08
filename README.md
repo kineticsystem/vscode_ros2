@@ -18,6 +18,7 @@ This documentation outlines the procedures for setting up Visual Studio Code (VS
   - [Intellisense](#intellisense)
   - [Sorting imports](#sorting-imports)
   - [Debugging Python files](#debugging-python-files)
+- [Discover and execute tests](#discover-and-execute-tests)
 - [Tips](#tips)
   - [Highlight current tab](#highlight-current-tab)
 - [Additional extensions](#additional-extensions)
@@ -411,6 +412,17 @@ In VSCode, we can add a breakpoint and display the content of this variable with
 ```python
 my_param.perform(context)
 ```
+
+## Discover and execute tests
+
+Test discovery in VSCode does not work perfectly. It is easier to add the location of your tests directly into your file `settings.json`:
+
+```json
+  "python.testing.pytestEnabled": true,
+  "python.testing.cwd": "${workspaceFolder}/path-to-test-folder/"
+```
+
+Your tests should now be available under the testing view on the left activity bar.
 
 ## Tips
 
