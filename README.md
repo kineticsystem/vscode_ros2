@@ -1,6 +1,6 @@
 # ROS2 and VSCode <!-- omit from toc -->
 
-<img height="70px" src="img/visual_studio_code.svg">
+<img src="img/vscode-fight.jpg" alt="my banner">
 
 This documentation outlines the procedures for setting up Visual Studio Code (VSCode) to build and execute ROS2 projects effectively.
 
@@ -26,7 +26,7 @@ This documentation outlines the procedures for setting up Visual Studio Code (VS
   - [Python](#python)
 - [Additional Resources](#additional-resources)
 
-## Initialization of Visual Studio Code 
+## Initialization of Visual Studio Code
 
 For this guide, it is presumed that Visual Studio Code has already been installed on your system without additional extensions. In an Ubuntu environment, the extensions are commonly stored in the following directory:
 
@@ -64,7 +64,7 @@ VSCode can be used to develop on Docker. You must install an extension called [M
 
 You should also install the extension called [Microsoft Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker), which allows you to work with containers and images.
 
-For more information, see VSCode document [Attach to a running container](https://code.visualstudio.com/docs/devcontainers/attach-container). 
+For more information, see VSCode document [Attach to a running container](https://code.visualstudio.com/docs/devcontainers/attach-container).
 
 ## Sourcing your ROS Dependencies
 
@@ -106,40 +106,37 @@ To run the `colcon` command from VSCode, you need to create the file `tasks.json
 
 ```json
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "colcon: build (debug)",
-            "type": "shell",
-            "command": [
-                "source /opt/ros/humble/setup.bash;",
-                "colcon build",
-                "--symlink-install",
-                "--event-handlers console_cohesion+",
-                "--base-paths workspace-path",
-                "--cmake-args -DCMAKE_BUILD_TYPE=Debug"
-            ]
-        },
-        {
-            "label": "colcon: clean",
-            "type": "shell",
-            "command": [
-                "cd project-workspace;",
-                "rm -rf build/ install/ log/;"
-            ]
-        },
-        {
-            "label": "colcon: test",
-            "type": "shell",
-            "command": [
-                "cd project-workspace;",
-                "source /opt/ros/humble/setup.bash;",
-                "source install/setup.bash;",
-                "colcon test;",
-                "colcon test-result --verbose;"
-            ]
-        }
-    ]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "colcon: build (debug)",
+      "type": "shell",
+      "command": [
+        "source /opt/ros/humble/setup.bash;",
+        "colcon build",
+        "--symlink-install",
+        "--event-handlers console_cohesion+",
+        "--base-paths workspace-path",
+        "--cmake-args -DCMAKE_BUILD_TYPE=Debug"
+      ]
+    },
+    {
+      "label": "colcon: clean",
+      "type": "shell",
+      "command": ["cd project-workspace;", "rm -rf build/ install/ log/;"]
+    },
+    {
+      "label": "colcon: test",
+      "type": "shell",
+      "command": [
+        "cd project-workspace;",
+        "source /opt/ros/humble/setup.bash;",
+        "source install/setup.bash;",
+        "colcon test;",
+        "colcon test-result --verbose;"
+      ]
+    }
+  ]
 }
 ```
 
@@ -147,24 +144,23 @@ To build a package, this may also work.
 
 ```json
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "colcon: build (debug)",
-            "type": "colcon",
-            "group": "build",
-            "args": [
-                "build",
-                "--symlink-install",
-                "--event-handlers console_cohesion+",
-                "--base-paths project-workspace",
-                "--cmake-args -DCMAKE_BUILD_TYPE=Debug"
-            ]
-        }
-    ]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "colcon: build (debug)",
+      "type": "colcon",
+      "group": "build",
+      "args": [
+        "build",
+        "--symlink-install",
+        "--event-handlers console_cohesion+",
+        "--base-paths project-workspace",
+        "--cmake-args -DCMAKE_BUILD_TYPE=Debug"
+      ]
+    }
+  ]
 }
 ```
-
 
 Modify the file according to your ROS2 distribution and project location.
 
@@ -188,28 +184,25 @@ Update it to match roughly the following content:
 
 ```json
 {
-  "configurations":
-    [
-      {
-        "browse":
-          {
-            "databaseFilename": "${default}",
-            "limitSymbolsToIncludedHeaders": false,
-          },
-        "includePath":
-          [
-            "/opt/ros/humble/include/**",
-            "/usr/include/**",
-            "add here your project include files"
-          ],
-        "name": "ROS",
-        "intelliSenseMode": "gcc-x64",
-        "compilerPath": "/usr/bin/gcc",
-        "cStandard": "gnu11",
-        "cppStandard": "c++17 ",
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
       },
-    ],
-  "version": 4,
+      "includePath": [
+        "/opt/ros/humble/include/**",
+        "/usr/include/**",
+        "add here your project include files"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++17 "
+    }
+  ],
+  "version": 4
 }
 ```
 
@@ -243,35 +236,33 @@ To debug your test, you must create a `launch.json` file inside your `.vscode` d
 ```json
 {
   "version": "0.2.0",
-  "configurations":
-    [
-      {
-        "name": "GDP: launch",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "enter program name, for example, ${workspaceFolder}/../build/path_to_executable",
-        "args": [],
-        "stopAtEntry": false,
-        "cwd": "${fileDirname}",
-        "environment": [],
-        "externalConsole": false,
-        "MIMode": "gdb",
-        "preLaunchTask": "add your build task here. e.g. colcon: build",
-        "setupCommands":
-          [
-            {
-              "description": "Enable pretty-printing for gdb",
-              "text": "-enable-pretty-printing",
-              "ignoreFailures": true,
-            },
-            {
-              "description": "Set Disassembly Flavor to Intel",
-              "text": "-gdb-set disassembly-flavor intel",
-              "ignoreFailures": true,
-            },
-          ],
-      },
-    ],
+  "configurations": [
+    {
+      "name": "GDP: launch",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "enter program name, for example, ${workspaceFolder}/../build/path_to_executable",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "preLaunchTask": "add your build task here. e.g. colcon: build",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -286,18 +277,18 @@ When you open an existing ROS2 Python project, IntelliSense does not find your R
 
 ```json
 {
-    "python.autoComplete.extraPaths": [
-      "/opt/ros/humble/lib/python3.10/site-packages",
-      "/opt/ros/humble/local/lib/python3.10/dist-packages",
-      "/my_project/build/package1",
-      "/my_project/build/package2",
-    ],
-    "python.analysis.extraPaths": [
-      "/opt/ros/humble/lib/python3.10/site-packages",
-      "/opt/ros/humble/local/lib/python3.10/dist-packages",
-      "/my_project/build/package1",
-      "/my_project/build/package2",
-    ] 
+  "python.autoComplete.extraPaths": [
+    "/opt/ros/humble/lib/python3.10/site-packages",
+    "/opt/ros/humble/local/lib/python3.10/dist-packages",
+    "/my_project/build/package1",
+    "/my_project/build/package2"
+  ],
+  "python.analysis.extraPaths": [
+    "/opt/ros/humble/lib/python3.10/site-packages",
+    "/opt/ros/humble/local/lib/python3.10/dist-packages",
+    "/my_project/build/package1",
+    "/my_project/build/package2"
+  ]
 }
 ```
 
@@ -320,18 +311,17 @@ To debug a normal Python file, you must create a `launch.json` file inside your 
 ```json
 {
   "version": "0.2.0",
-  "configurations":
-    [
-      {
-        "name": "Python: Current File",
-        "type": "python",
-        "request": "launch",
-        "program": "${file}",
-        "args": ["--arg1", "value"],
-        "console": "integratedTerminal",
-        "justMyCode": true,
-      },
-    ],
+  "configurations": [
+    {
+      "name": "Python: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "args": ["--arg1", "value"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ]
 }
 ```
 
@@ -339,15 +329,15 @@ To debug a ROS2 Python launch file, you can open a command palette and type _"RO
 
 ```json
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "ROS: Launch",
-            "type": "ros",
-            "request": "launch",
-            "target": "/absolute-path/launch-file.py"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "ROS: Launch",
+      "type": "ros",
+      "request": "launch",
+      "target": "/absolute-path/launch-file.py"
+    }
+  ]
 }
 ```
 
@@ -355,14 +345,14 @@ The ROS2 extension allows you to debug a running node as well.
 
 ```json
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "ROS: Attach",
-            "type": "ros",
-            "request": "attach"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "ROS: Attach",
+      "type": "ros",
+      "request": "attach"
+    }
+  ]
 }
 ```
 
