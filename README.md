@@ -2,7 +2,9 @@
 
 <img src="img/vscode-fight.jpg" alt="my banner">
 
-This documentation outlines the procedures for setting up Visual Studio Code (VSCode) to build and execute ROS2 projects effectively.
+This document provides a detailed guide for using Visual Studio Code (VSCode) to build and execute ROS2 projects efficiently with C++ and Python.
+It covers a range of topics, including initializing VSCode, remote development over SSH, development using Docker, sourcing ROS dependencies, and building with Colcon.
+The document also delves into specific techniques for working in C++ and Python within the ROS2 environment, offering valuable insights and tips to enhance the development process.
 
 ## Table of Contents <!-- omit from toc -->
 
