@@ -455,7 +455,7 @@ Add the following to your configuration file `settings.json`:
 
 - [Shortcut Menu Bar](https://marketplace.visualstudio.com/items?itemName=jerrygoyal.shortcut-menu-bar): Extension to add some useful toolbar buttons like go back/forward buttons, switch between headers and cpp files and more.
 
-- [Task Explorer](https://marketplace.visualstudio.com/items?itemName=spmeesseman.vscode-taskexplorer): Extension to display and execute tasks displayed on the explorer panel.
+- [Task Explorer](https://marketplace.visualstudio.com/items?itemName=spmeesseman.vscode-taskexplorer): Extension to display and execute tasks displayed on the explorer panel. Remember to configure the extension to enable the tasks button on the VSCode left activity panel.
 
 - [UMLet](https://marketplace.visualstudio.com/items?itemName=TheUMLetTeam.umlet): Draw UML diagrams inside VSCode.
 
