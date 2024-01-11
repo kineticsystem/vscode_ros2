@@ -13,6 +13,7 @@ The document also delves into specific techniques for working in C++ and Python 
 - [Development on Docker](#development-on-docker)
 - [Sourcing your ROS Dependencies](#sourcing-your-ros-dependencies)
 - [How to build with Colcon](#how-to-build-with-colcon)
+- [How to build with CMake](#how-to-build-with-cmake)
 - [Working in C++](#working-in-c)
   - [Navigation and Shortcuts](#navigation-and-shortcuts)
   - [Debugging tests](#debugging-tests)
@@ -171,6 +172,67 @@ Choose _"Terminal → Run build task..."_ from the menu to build your project. T
 `Ctrl + Shift + B`
 
 Using the same approach, you can also execute any ROS2 launch files.
+
+## How to build with CMake
+
+Building your code with CMake from within the IDE is also possible. Here is a sample configuration to add to the file `tasks.json`
+
+```json
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CMake Configure",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-S", ".",
+                "-B", "build",
+                "-DCMAKE_BUILD_TYPE=Release",
+                "other options..."
+            ],
+            "options": {
+                "env": {
+                    "C_INCLUDE_PATH": "path to C include files...",
+                    "CPLUS_INCLUDE_PATH": "path to C++ include files...",
+                    "LIBRARY_PATH": "path to libraries...",
+                    "CMAKE_PREFIX_PATH": "path to CMake modules...",
+                    "LD_LIBRARY_PATH": "path to libraries...",
+                    "PATH": "path to executables, including compiler and cmake..."
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "CMake Build",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build", "build"
+            ],
+            "options": {
+                "env": {
+                    "C_INCLUDE_PATH": "path to C include files...",
+                    "CPLUS_INCLUDE_PATH": "path to C++ include files...",
+                    "LIBRARY_PATH": "path to libraries...",
+                    "CMAKE_PREFIX_PATH": "path to CMake modules...",
+                    "LD_LIBRARY_PATH": "path to libraries...",
+                    "PATH": "path to executables, including compiler and cmake..."
+                }
+                }
+            },
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "dependsOn": ["CMake Configure"]
+        }
+    ]
+}
+```
 
 ## Working in C++
 
