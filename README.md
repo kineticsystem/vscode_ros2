@@ -470,16 +470,20 @@ my_param.perform(context)
 
 ### Discover and execute tests
 
-Test discovery in VSCode does not work perfectly and sometimes it is easier to simply run `colcon test` as described previously.
+Test discovery in VSCode does not work perfectly and sometimes it does not find your tests automatically.
 
-VSCode should find all your tests automatically, but you can also add all test folders directly into `settings.json`:
+You can add them manually by appending the following lines to your `settings.json`:
 
 ```json
   "python.testing.pytestEnabled": true,
-  "python.testing.cwd": "${workspaceFolder}/path-to-test-folder/"
+  "python.testing.unittestEnabled": false,
+  "python.testing.cwd": "${workspaceFolder}/path-to-test-folder/",
+  "python.testing.pytestPath": "/usr/bin/pytest-3"
 ```
 
 Your tests should now be available under the testing view on the left activity bar.
+
+If you do not need to debug your tests, you can always run `colcon test` as described previously.
 
 ## Tips
 
