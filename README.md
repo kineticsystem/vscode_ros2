@@ -470,7 +470,7 @@ my_param.perform(context)
 
 ### Discover and execute tests
 
-Test discovery in VSCode does not work perfectly and sometimes it does not find your tests automatically.
+Test discovery in VSCode does not work perfectly, and sometimes it does not find your tests automatically.
 
 You can add them manually by appending the following lines to your `settings.json`:
 
