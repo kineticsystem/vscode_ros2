@@ -135,8 +135,7 @@ To run the `colcon` command from VSCode, you need to create the file `tasks.json
         "cd project-workspace;",
         "source /opt/ros/humble/setup.bash;",
         "source install/setup.bash;",
-        "colcon test;",
-        "colcon test-result --verbose;"
+        "colcon test --packages-select <package-name> --event-handlers console_direct+;"
       ]
     }
   ]
