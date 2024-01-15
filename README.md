@@ -470,7 +470,9 @@ my_param.perform(context)
 
 ### Discover and execute tests
 
-Test discovery in VSCode does not work perfectly. It is easier to add the location of your tests directly into your file `settings.json`:
+Test discovery in VSCode does not work perfectly and sometimes it is easier to simply run `colcon test` as described previously.
+
+VSCode should find all your tests automatically, but you can also add all test folders directly into `settings.json`:
 
 ```json
   "python.testing.pytestEnabled": true,
