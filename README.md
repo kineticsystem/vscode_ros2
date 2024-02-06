@@ -430,6 +430,36 @@ my_node = launch_ros.actions.Node(
 )
 ```
 
+A more general approach to connect to a running node, either C++ or Python, is described below.
+
+If you have node started using the prefix param and running inside a GDB server, you can directly connect to the GDB server using the following  configuration.
+
+Additionally, when you start a node inside a GDB server, the node awaits for the GDB client to connect, before continuing the execution.
+
+```json
+{
+    "name": "Connect to gdbserver",
+    "type": "cppdbg",
+    "request": "launch",
+    "program": "${workspaceFolder}/path-to-node-executable",
+    "args": [],
+    "stopAtEntry": false,
+    "cwd": "${workspaceFolder}",
+    "environment": [],
+    "externalConsole": false,
+    "MIMode": "gdb",
+    "miDebuggerServerAddress": "localhost:3000",
+    "miDebuggerPath": "/usr/bin/gdb",
+    "setupCommands": [
+        {
+            "description": "Enable pretty-printing for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+        }
+    ]
+}
+```
+
 Following is a more complex solution that requires you to modify the Python file. Add this code to the end of the launch file to convert it to a normal Python file:
 
 ```python
