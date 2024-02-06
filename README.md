@@ -434,7 +434,7 @@ A more general approach to connect to a running node, either C++ or Python, is d
 
 If you have node started using the prefix param and running inside a GDB server, you can directly connect to the GDB server using the following  configuration.
 
-Additionally, when you start a node inside a GDB server, the node awaits for the GDB client to connect, before continuing the execution.
+Additionally, when you start a node inside a GDB server, the node awaits on the first breakpoint, before continuing the execution.
 
 ```json
 {
