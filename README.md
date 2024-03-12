@@ -43,13 +43,20 @@ Upon launching VSCode, install the [Microsoft ROS extension](https://marketplace
 
 This extension will facilitate the installation of requisite dependencies such as [Microsoft C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) and [Microsoft Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) extensions.
 
-<img height="80px" src="img/cpp_extension.svg"><img height="80px" src="img/python_extension.svg">
+<img height="80px" src="img/cpp_extension.svg"><img height="80px" src="img/python_extension.svg"><img height="80px" src="img/cmake_extension.svg">
 
-Install the [C/C++ Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack), which provides Intellisense and C++ file navigation. This will install the [CMake extension](https://marketplace.visualstudio.com/items?itemName=twxs.cmake) too.
+Install the [C/C++ Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack), which provides Microsoft Intellisense and C++ file navigation. This will install the [CMake extension](https://marketplace.visualstudio.com/items?itemName=twxs.cmake) too.
 
-<img height="80px" src="img/cmake_extension.svg">
+<img height="80px" src="img/clangd.svg">
 
-You may need to enable Intellisense in your VSCode Preferences Settings.
+Clang is a better Intellisense tool for C++, expecially good in refactoring code. 
+You must install both [Clangd](https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd) extension and the clangd language server.
+
+```bash
+sudo apt install clangd
+```
+
+You many need to modify the preference parameter `C_Cpp: Intelli Sense Engine` to switch between Microsoft (default) and Clangd (disabled) Intellisense.
 
 ## Remote development over SSH
 
@@ -78,6 +85,8 @@ When you execute or debug a file in your project, it may fail to find its runtim
 You can source your project in the same Debug Console and try again.
 
 `source install/setup.bash`
+
+<img width="100%" src="img/screenshot-setup.png">
 
 **Solution 2 - for local development**
 
@@ -379,7 +388,7 @@ To debug a normal Python file, you must create a `launch.json` file inside your 
   "configurations": [
     {
       "name": "Python: Current File",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "program": "${file}",
       "args": ["--arg1", "value"],
@@ -533,6 +542,8 @@ Add the following to your configuration file `settings.json`:
 ### General
 
 - [Bookmarks](https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks): Mark lines of codes and later jump to them.
+
+- [Clangd](https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd): It helps developers write, understand and improve C/C++ code by providing code completion, compile errors, and warnings, go-to-definition and cross references, hover information and inlay hints, include management, code formatting, simple refactorings.
 
 - [CodeSnap](https://marketplace.visualstudio.com/items?itemName=adpyke.codesnap): Extension to take screenshots of your code.
 
