@@ -366,6 +366,17 @@ When you open an existing ROS2 Python project, IntelliSense does not find your R
 }
 ```
 
+If you use Pylint, you may find useful passing global parameters:
+
+```json
+{
+    "pylint.args": [
+        "--max-line-length=120",
+        "disable=no-member"
+    ]
+}
+```
+
 All Python dependencies are stored in the environment variable `PYTHONPATH`. Unfortunately, VSCode does not use it. To get the list of all libraries, source your project and type the following bash command:
 
 ```bash
