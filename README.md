@@ -64,6 +64,8 @@ Clangd needs a file called `compile_commands.json` inside the build folder. To g
 -DCMAKE_EXPORT_COMPILE_COMMANDS=true
 ```
 
+If you use clangd, the file `c_cpp_properties.json` is no longer necessary.
+
 ## Remote development over SSH
 
 VSCode can be used to develop remotely over SSH. You must install an extension called [Microsoft Remote SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh). This extension will also add a button on the left toolbar to display all available Docker containers.
