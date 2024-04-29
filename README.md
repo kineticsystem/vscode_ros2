@@ -49,14 +49,20 @@ Install the [C/C++ Extension Pack](https://marketplace.visualstudio.com/items?it
 
 <img height="80px" src="img/clangd.svg">
 
-Clang is a better Intellisense tool for C++, expecially good in refactoring code. 
+Clang works better than Microsoft Intellisense in highlighting code, and it is expecially good in refactoring.
 You must install both [Clangd](https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd) extension and the clangd language server.
 
 ```bash
 sudo apt install clangd
 ```
 
-You many need to modify the preference parameter `C_Cpp: Intelli Sense Engine` to switch between Microsoft (default) and Clangd (disabled) Intellisense.
+You many need to disable Microsoft Intellisense and modify the preference parameter `C_Cpp: Intelli Sense Engine` from Microsoft (default) to Clangd (disabled) Intellisense.
+
+Clangd needs a file called `compile_commands.json` inside the build folder. To generate this files remember to add the following [option](https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html) to your cmake command:
+
+```bash
+-DCMAKE_EXPORT_COMPILE_COMMANDS=true
+```
 
 ## Remote development over SSH
 
