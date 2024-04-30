@@ -61,10 +61,12 @@ You many need to disable Microsoft Intellisense and modify the preference parame
 Clangd needs a file called `compile_commands.json` inside the build folder. To generate this files remember to add the following [option](https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html) to your cmake command:
 
 ```bash
--DCMAKE_EXPORT_COMPILE_COMMANDS=true
+-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 ```
 
-If you use clangd, the file `c_cpp_properties.json` is no longer necessary.
+Remember to reload vscode when you recreate the file `compile_commands.json`. 
+
+Finally, if you use clangd, the file `c_cpp_properties.json` is no longer necessary.
 
 ## Remote development over SSH
 
