@@ -56,9 +56,7 @@ You must install both [Clangd](https://marketplace.visualstudio.com/items?itemNa
 sudo apt install clangd
 ```
 
-You many need to disable Microsoft Intellisense and modify the preference parameter `C_Cpp: Intelli Sense Engine` from Microsoft (default) to Clangd (disabled) Intellisense.
-
-Clangd needs a file called `compile_commands.json` inside the build folder. To generate this files remember to add the following [option](https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html) to your cmake command:
+By default, Clangd looks a for file called `compile_commands.json` inside the build folder. To generate this file you must add the following [option](https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html) to your cmake command:
 
 ```bash
 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
@@ -66,7 +64,45 @@ Clangd needs a file called `compile_commands.json` inside the build folder. To g
 
 Remember to reload vscode when you recreate the file `compile_commands.json`. 
 
-Finally, if you use clangd, the file `c_cpp_properties.json` is no longer necessary.
+With Clangd, the build command in the `tasks.json` file may look something like this:.
+
+```bash
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "colcon: build",
+      "type": "shell",
+      "command": [
+        "source /opt/ros/humble/setup.bash;",
+        "colcon",
+        "--log-base <path-to-log-folder>",
+        "build",
+        "--build-base <path-to-build-folder>",
+        "--install-base <path-to-install-folder>",
+        "--base-path <path-to-ros-packages>",
+        "--symlink-install",
+        "--event-handlers console_cohesion+",
+        "--cmake-args -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=true"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+```
+
+You also need the following information in your VSCode `settings.json` file to you specify the location of the folder containing the `compile_commands.json` file and disable Microsoft Intellisense.
+
+```bash
+  "clangd.path": "<path-to-clangd-binary>",
+  "clangd.arguments": [
+    "-log=verbose", 
+    "-pretty", 
+    "--background-index", 
+    "--compile-commands-dir=<path-to-compile-commands-folder>"
+```
 
 ## Remote development over SSH
 
