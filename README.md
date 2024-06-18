@@ -55,8 +55,8 @@ Install the [C/C++ Extension Pack](https://marketplace.visualstudio.com/items?it
 
 <img height="80px" src="img/clangd.svg">
 
-Clang works better than Microsoft Intellisense in highlighting code, and it is expecially good in refactoring.
-You must install both [Clangd](https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd) extension and the clangd language server.
+Clangd works better than Microsoft Intellisense in highlighting code, and it is expecially good at refactoring.
+You must install both [Clangd](https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd) extension and the clangd language server. You can either install clangd as below, or follow the pop-up prompt from the clangd extension asking you to install the language server.
 
 ```bash
 sudo apt install clangd
@@ -139,7 +139,7 @@ VSCode can be used to develop on Docker. You must install an extension called [M
 
 You should also install the extension called [Microsoft Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker), which allows you to work with containers and images.
 
-For more information, see VSCode document [Attach to a running container](https://code.visualstudio.com/docs/devcontainers/attach-container).
+For more information, see the VSCode document [Attach to a running container](https://code.visualstudio.com/docs/devcontainers/attach-container).
 
 ## Sourcing your ROS Dependencies
 
@@ -177,9 +177,61 @@ The container configuration file is usually stored somewhere inside this folder:
 $HOME/.config/Code/User/globalStorage/ms-vscode-remote.remote-containers/
 ```
 
+**Solution 4 - Utilize environment files**
+
+Alternatively, you may utilize vscode's `.env` files to debug with ROS2. To start, add a file named `generate_env.sh` within the `.vscode` folder and populate it with the following content:
+
+```bash
+#!/bin/bash
+filename=.vscode/.env
+echo "PATH=$PATH" > $filename
+echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH" >> $filename
+```
+
+This bash script simply prints your shell's `PATH` and `LD_LIBRARY_PATH` variables into a file, using [VSCode's `.env` file format](https://code.visualstudio.com/docs/python/environments#_environment-variable-definitions-file). To use this with your actual environment, simply add the following to your build task:
+
+```bash
+source install_dbg/setup.bash && cd ${workspaceFolder} && source .vscode/generate_env.sh
+```
+
+A full example build task with this included is given below:
+
+```json
+{
+  "type": "shell",
+  "label": "Debug build",
+  "command": "source /opt/ros/rolling/setup.bash && nice colcon build --symlink-install --mixin debug compile-commands ccache --build-base build_dbg --install-base install_dbg && source install_dbg/setup.bash && cd ${workspaceFolder} && source .vscode/generate_env.sh && echo Debug build complete",
+  "options": {
+      "cwd": "${workspaceFolder}/../.."
+  },
+  "group": {
+      "kind": "build",
+      "isDefault": true
+  },
+  "presentation": {
+      "echo": true,
+      "reveal": "always",
+      "focus": true,
+      "panel": "shared",
+      "showReuseMessage": true,
+      "clear": true
+  }
+}
+```
+
+This builds in debug mode, putting the output in `build_dbg` and `install_dbg` instead of `build` and `install` (in case you wish to have two separate builds of your code), then sources the generated `setup.bash` file and stores the relevant information for debugging in your `.vscode/.env` file.
+
+Finally, to use this file, you can just add the following to a configuration within your `launch.json`:
+
+```json
+"envFile": "${workspaceFolder}/.vscode/.env"
+```
+
+With all these steps complete, you will not have to manually do anything to debug your code, as the environment will be automatically generated and used with your build tasks.
+
 ## How to build with Colcon
 
-As shown previously, yo run the `colcon` command from VSCode, you need to create the file `tasks.json` within the `.vscode` folder and populate it with the following content:
+As shown previously, if you run the `colcon` command from VSCode, you need to create the file `tasks.json` within the `.vscode` folder and populate it with the following content:
 
 ```json
 {
@@ -345,7 +397,7 @@ Update it to match roughly the following content:
       "includePath": [
         "/opt/ros/humble/include/**",
         "/usr/include/**",
-        "add here your project include files"
+        "add your project include files here"
       ],
       "name": "ROS",
       "intelliSenseMode": "gcc-x64",
@@ -367,7 +419,7 @@ There are two additional parameters worth mentioning.
 "compileCommands": "${workspaceFolder}/build/compile_commands.json"
 ```
 
-If you can build your application with Colcon before opening VSCode, you can use the generated file `compile_commands.json` to feed Intellisense. This configuration overrides the `includePath` parameter. It is more precise but requires a build folder, which is not always the case.
+If you can build your application with Colcon before opening VSCode, you can use the generated file `compile_commands.json` to feed Intellisense. This configuration overrides the `includePath` parameter. It is more precise but requires a build folder, which is not always available.
 
 ### Navigation and Shortcuts
 
@@ -381,7 +433,7 @@ Another useful extension is [C++ TestMate](https://marketplace.visualstudio.com/
 
 <img height="80px" src="img/testmate_extension.svg">
 
-Please note that, for this extension to work correctly, you may need to source your ROS repository before starting up VSCode.
+Please note that for this extension to work correctly, you may need to source your ROS repository before starting up VSCode.
 
 To debug your test, you must create a `launch.json` file inside your `.vscode` directory. The file is automatically created for you when you debug your first test.
 
@@ -425,7 +477,7 @@ https://code.visualstudio.com/docs/python/python-tutorial
 
 ### Intellisense
 
-When you open an existing ROS2 Python project, IntelliSense does not find your ROS2 Python modules or your local package modules. To solve the issue, create a file `settings.json` with content matching roughly the following:
+When you open an existing ROS2 Python project, IntelliSense does not find your ROS2 Python modules or your local package modules. To solve the issue, create a file `settings.json` with content roughly matching the following:
 
 ```json
 {
@@ -444,7 +496,7 @@ When you open an existing ROS2 Python project, IntelliSense does not find your R
 }
 ```
 
-If you use Pylint, you may find useful passing global parameters:
+If you use Pylint, you may find passing global parameters useful:
 
 ```json
 {
@@ -532,7 +584,7 @@ A more general approach to connect to a running node, either C++ or Python, is d
 
 If you have node started using the prefix param and running inside a GDB server, you can directly connect to the GDB server using the following  configuration.
 
-Additionally, when you start a node inside a GDB server, the node awaits on the first breakpoint, before continuing the execution.
+Additionally, when you start a node inside a GDB server, the node waits on the first breakpoint before continuing execution.
 
 ```json
 {
@@ -558,7 +610,7 @@ Additionally, when you start a node inside a GDB server, the node awaits on the 
 }
 ```
 
-Following is a more complex solution that requires you to modify the Python file. Add this code to the end of the launch file to convert it to a normal Python file:
+The following is a more complex solution that requires you to modify the Python file. Add this code to the end of the launch file to convert it to a normal Python file:
 
 ```python
 def main():
