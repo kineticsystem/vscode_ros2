@@ -25,6 +25,7 @@ The document also delves into specific techniques for working in C++ and Python 
   - [Discover and execute tests](#discover-and-execute-tests)
 - [Tips](#tips)
   - [Highlight current tab](#highlight-current-tab)
+  - [Ignore .vscode folder in Git](#ignore-vscode-folder-in-git)
 - [Additional extensions](#additional-extensions)
   - [General](#general)
   - [Python](#python)
@@ -676,6 +677,37 @@ Add the following to your configuration file `settings.json`:
       "tab.activeBorder": "#ffffff",
       "tab.activeBackground": "#373737"
   }
+```
+
+### Ignore .vscode folder in Git
+
+If you do not already have one, you can create a global `.gitignore` file. To do this, you can simply run the following from a terminal:
+
+```bash
+touch ~/.gitignore_global
+git config --global core.excludesFile '~/.gitignore_global`
+```
+
+Inside `~/.gitignore_global`, you can add anything you wish never to be included in your git repositories. This can be overrided on a per-repo basis if you wish to. For example, the following is one possible global gitignore file:
+
+```
+.vscode
+.dockerignore
+build
+build_dbg
+.cache
+```
+
+This ignores the `.vscode` folder globally, so you never have to worry about accidentally committing it. Say you wish to override this. You can simply do the following to include your VSCode `settings.json` file, for example:
+
+```bash
+git add -f .vscode/settings.json
+```
+
+Additionally, you can add a `.gitignore` to that project itself and unignore anything, like so (to override your global settings and track the `.vscode` folder):
+
+```
+!.vscode
 ```
 
 ## Additional extensions
