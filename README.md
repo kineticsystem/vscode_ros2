@@ -8,6 +8,7 @@ The document also delves into specific techniques for working in C++ and Python 
 
 ## Table of Contents <!-- omit from toc -->
 
+- [Configuration files examples](#configuration-files-examples)
 - [Initialization of Visual Studio Code](#initialization-of-visual-studio-code)
 - [Remote development over SSH](#remote-development-over-ssh)
 - [Development on Docker](#development-on-docker)
@@ -28,6 +29,11 @@ The document also delves into specific techniques for working in C++ and Python 
   - [General](#general)
   - [Python](#python)
 - [Additional Resources](#additional-resources)
+
+## Configuration files examples
+
+For a quick reference, you can find examples of VSCode configuration files
+[here](examples/examples.md).
 
 ## Initialization of Visual Studio Code
 
@@ -64,7 +70,7 @@ By default, Clangd looks a for file called `compile_commands.json` inside the bu
 
 Remember to reload vscode when you recreate the file `compile_commands.json`. 
 
-With Clangd, the build command in the `tasks.json` file may look something like this:.
+With Clangd, the build command in the `tasks.json` file may look something like this:
 
 ```bash
 {
@@ -76,11 +82,11 @@ With Clangd, the build command in the `tasks.json` file may look something like 
       "command": [
         "source /opt/ros/humble/setup.bash;",
         "colcon",
-        "--log-base <path-to-log-folder>",
+        "--log-base ${env:WORKSPACE}/log",
         "build",
-        "--build-base <path-to-build-folder>",
-        "--install-base <path-to-install-folder>",
-        "--base-path <path-to-ros-packages>",
+        "--build-base ${env:WORKSPACE}/build",
+        "--install-base ${env:WORKSPACE}/install",
+        "--base-path ${env:WORKSPACE}/path-to-subproject",
         "--symlink-install",
         "--event-handlers console_cohesion+",
         "--cmake-args -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=true"
@@ -89,9 +95,22 @@ With Clangd, the build command in the `tasks.json` file may look something like 
       "group": {
         "kind": "build",
         "isDefault": true
-      }
+    },
+    {
+      "label": "colcon: clean",
+      "type": "shell",
+      "command": [
+          "cd ${env:WORKSPACE};",
+          "rm -rf build;",
+          "rm -rf install;",
+          "rm -rf log;"
+      ]
     }
+  ]
+}
 ```
+
+We assume `WORKSPACE` to be a global variable pointing to the root of your workspace.
 
 You also need the following information in your VSCode `settings.json` file to you specify the location of the folder containing the `compile_commands.json` file and disable Microsoft Intellisense.
 
@@ -160,28 +179,41 @@ $HOME/.config/Code/User/globalStorage/ms-vscode-remote.remote-containers/
 
 ## How to build with Colcon
 
-To run the `colcon` command from VSCode, you need to create the file `tasks.json` within the `.vscode` folder and populate it with the following content:
+As shown previously, yo run the `colcon` command from VSCode, you need to create the file `tasks.json` within the `.vscode` folder and populate it with the following content:
 
 ```json
 {
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "colcon: build (debug)",
+      "label": "colcon: build",
       "type": "shell",
       "command": [
         "source /opt/ros/humble/setup.bash;",
-        "colcon build",
+        "colcon",
+        "--log-base ${env:MY_PROJECT}/log",
+        "build",
+        "--build-base ${env:MY_PROJECT}/build",
+        "--install-base ${env:MY_PROJECT}/install",
+        "--base-path ${env:MY_PROJECT}/path-to-subproject",
         "--symlink-install",
         "--event-handlers console_cohesion+",
-        "--base-paths workspace-path",
-        "--cmake-args -DCMAKE_BUILD_TYPE=Debug"
-      ]
+        "--cmake-args -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=true"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
     },
     {
       "label": "colcon: clean",
       "type": "shell",
-      "command": ["cd project-workspace;", "rm -rf build/ install/ log/;"]
+      "command": [
+          "cd ${env:MY_PROJECT};",
+          "rm -rf build;",
+          "rm -rf install;",
+          "rm -rf log;"
+      ]
     },
     {
       "label": "colcon: test",
