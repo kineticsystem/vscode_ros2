@@ -434,9 +434,17 @@ Another useful extension is [C++ TestMate](https://marketplace.visualstudio.com/
 
 <img height="80px" src="img/testmate_extension.svg">
 
-Please note that for this extension to work correctly, you may need to source your ROS repository before starting up VSCode.
+For TestMate test discovery to work, you must add the location of your tests in the `settings.json` configuration file.
 
-To debug your test, you must create a `launch.json` file inside your `.vscode` directory. The file is automatically created for you when you debug your first test.
+```json
+    "testMate.cpp.discovery.loadOnStartup": true,
+    "testMate.cpp.test.executables": "${env:MY_PROJECT}/build/**/*{test,Test,TEST}*",
+
+```
+
+Additionally, you may need to source your ROS repository before starting up VSCode.
+
+If you want to debug a test without this extension, you must create a `launch.json` file inside your `.vscode` directory. The file is automatically created for you when you debug your first test.
 
 ```json
 {
