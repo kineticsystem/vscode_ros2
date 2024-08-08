@@ -11,7 +11,8 @@ The document also delves into specific techniques for working in C++ and Python 
 - [Configuration files examples](#configuration-files-examples)
 - [Initialization of Visual Studio Code](#initialization-of-visual-studio-code)
 - [Remote development over SSH](#remote-development-over-ssh)
-- [Development on Docker](#development-on-docker)
+- [Developmenti in Docker container](#developmenti-in-docker-container)
+- [Development in remote Docker container](#development-in-remote-docker-container)
 - [Sourcing your ROS Dependencies](#sourcing-your-ros-dependencies)
 - [How to build with Colcon](#how-to-build-with-colcon)
 - [How to build with CMake](#how-to-build-with-cmake)
@@ -132,7 +133,7 @@ VSCode can be used to develop remotely over SSH. You must install an extension c
 
 Open the command palette and type: "Remote-SSH: Connect to Host...".
 
-## Development on Docker
+## Developmenti in Docker container
 
 VSCode can be used to develop on Docker. You must install an extension called [Microsoft Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers), which you can use to connect to running containers. With this extension, you can also install your local VSCode extensions into the container in one click.
 
@@ -141,6 +142,16 @@ VSCode can be used to develop on Docker. You must install an extension called [M
 You should also install the extension called [Microsoft Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker), which allows you to work with containers and images.
 
 For more information, see the VSCode document [Attach to a running container](https://code.visualstudio.com/docs/devcontainers/attach-container).
+
+## Development in remote Docker container
+
+VSCode can be used to develop inside a remote Docker container, i.e. a container running on a remote machine.
+
+To achive this, you must install an extension called [Microsoft Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack).
+
+<img height="80px" src="img/remote_development.svg">
+
+First you connect to the remote machine using Microsoft Remote SSH, an then you connect to the running container using this extension.
 
 ## Sourcing your ROS Dependencies
 
