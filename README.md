@@ -775,6 +775,8 @@ Additionally, you can add a `.gitignore` to that project itself and unignore any
 
 - [Microsoft Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance): This is a powerful tool that enhances the Python development experience in Visual Studio Code by providing tools for code analysis, error checking, code navigation, and code completion.
 
+ - [View Image for Python Debugging](https://marketplace.visualstudio.com/items?itemName=elazarcoh.simply-view-image-for-python-debugging): Extension to display raw images and matplotlib figures inside VSCode while debugging.
+
 ## Additional Resources
 
 For additional information about ROS2 and VSCode, you may refer to the following tutorials:
