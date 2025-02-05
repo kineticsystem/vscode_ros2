@@ -749,7 +749,7 @@ Additionally, you can add a `.gitignore` to that project itself and unignore any
 
 - [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles)): Extension for Markdown advanced editing. It adds a document outline, automatic table of contents, etc.
 
-- [Markdown Preview Github Style](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one): Better Markdown preview.
+- [Markdown Preview Github Style](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles): Better Markdown preview.
 
 - [Microsoft Live Preview](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server): Hosts a local server in your workspace to preview your webpages on.
 
