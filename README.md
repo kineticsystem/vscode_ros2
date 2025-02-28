@@ -24,6 +24,7 @@ The document also delves into specific techniques for working in C++ and Python 
   - [Sorting imports](#sorting-imports)
   - [Debugging Python files](#debugging-python-files)
   - [Discover and execute tests](#discover-and-execute-tests)
+  - [Code coverage](#code-coverage)
 - [Tips](#tips)
   - [Highlight current tab](#highlight-current-tab)
   - [Ignore .vscode folder in Git](#ignore-vscode-folder-in-git)
@@ -670,9 +671,11 @@ my_param.perform(context)
 
 ### Discover and execute tests
 
-Test discovery in VSCode does not work perfectly, and sometimes it does not find your tests automatically.
+The Test Explorer extension sometimes fails to automatically find where Python tests are located, for several different reasons.
 
-You can add them manually by appending the following lines to your `settings.json`:
+Sometimes tests placed in subfolders aren't discovered because such test files cannot be imported. To make them importable, create an empty file named `__init__.py` in that folder.
+
+You may have to add your tests manually by appending the following lines to your `settings.json`:
 
 ```json
   "python.testing.pytestEnabled": true,
@@ -681,11 +684,29 @@ You can add them manually by appending the following lines to your `settings.jso
   "python.testing.pytestPath": "/usr/bin/pytest-3"
 ```
 
-Your tests should now be available under the testing view on the left activity bar. 
-
-**Note:** Sometimes tests placed in subfolders aren't discovered because such test files cannot be imported. To make them importable, create an empty file named `__init__.py` in that folder.
 
 If you do not need to debug your tests, you can always run `colcon test` as described previously.
+
+### Code coverage
+
+The Test Explorer extension can also calculate test code coverage. You may want to add the option `python.testing.pytestArgs` to specify where the code being tested is located.
+
+```json
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.cwd": "${workspaceFolder}/path-to-test-folder/",
+  "python.testing.pytestArgs": [
+    "--cov", 
+    "${workspaceFolder}"
+  ]
+```
+
+If the tests themselves appear in the report, you can add a configuration file `.coveragerc` inside your test folder with a similar content:
+
+```bash
+[run]
+omit = *test*, __init__.py
+```
 
 ## Tips
 
