@@ -683,7 +683,7 @@ You can add them manually by appending the following lines to your `settings.jso
 
 Your tests should now be available under the testing view on the left activity bar. 
 
-Should this not be the case, you may be missing the special file `__init__.py` in your test folder, a special Python file used to indicate that a directory should be treated as a Python package. It is required for Python to recognize a directory as containing a package.
+**Note:** Sometimes tests placed in subfolders aren't discovered because such test files cannot be imported. To make them importable, create an empty file named `__init__.py` in that folder.
 
 If you do not need to debug your tests, you can always run `colcon test` as described previously.
 
