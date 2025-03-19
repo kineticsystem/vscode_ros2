@@ -333,58 +333,55 @@ Building your code with CMake from within the IDE is also possible. Here is a sa
 
 ```json
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "CMake Configure",
-            "type": "shell",
-            "command": "cmake",
-            "args": [
-                "-S", ".",
-                "-B", "build",
-                "-DCMAKE_BUILD_TYPE=Release",
-                "other options..."
-            ],
-            "options": {
-                "env": {
-                    "C_INCLUDE_PATH": "path to C include files...",
-                    "CPLUS_INCLUDE_PATH": "path to C++ include files...",
-                    "LIBRARY_PATH": "path to libraries...",
-                    "CMAKE_PREFIX_PATH": "path to CMake modules...",
-                    "LD_LIBRARY_PATH": "path to libraries...",
-                    "PATH": "path to executables, including compiler and cmake..."
-                }
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
-            "label": "CMake Build",
-            "type": "shell",
-            "command": "cmake",
-            "args": [
-                "--build", "build"
-            ],
-            "options": {
-                "env": {
-                    "C_INCLUDE_PATH": "path to C include files...",
-                    "CPLUS_INCLUDE_PATH": "path to C++ include files...",
-                    "LIBRARY_PATH": "path to libraries...",
-                    "CMAKE_PREFIX_PATH": "path to CMake modules...",
-                    "LD_LIBRARY_PATH": "path to libraries...",
-                    "PATH": "path to executables, including compiler and cmake..."
-                }
-                }
-            },
-            "group": "build",
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "dependsOn": ["CMake Configure"]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CMake Configure",
+      "type": "shell",
+      "command": "cmake",
+      "args": [
+        "-S",
+        ".",
+        "-B",
+        "build",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "other options..."
+      ],
+      "options": {
+        "env": {
+          "C_INCLUDE_PATH": "path to C include files...",
+          "CPLUS_INCLUDE_PATH": "path to C++ include files...",
+          "LIBRARY_PATH": "path to libraries...",
+          "CMAKE_PREFIX_PATH": "path to CMake modules...",
+          "LD_LIBRARY_PATH": "path to libraries...",
+          "PATH": "path to executables, including compiler and cmake..."
         }
-    ]
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "CMake Build",
+      "type": "shell",
+      "command": "cmake",
+      "args": ["--build", "build"],
+      "options": {
+        "env": {
+          "C_INCLUDE_PATH": "path to C include files...",
+          "CPLUS_INCLUDE_PATH": "path to C++ include files...",
+          "LIBRARY_PATH": "path to libraries...",
+          "CMAKE_PREFIX_PATH": "path to CMake modules...",
+          "LD_LIBRARY_PATH": "path to libraries...",
+          "PATH": "path to executables, including compiler and cmake..."
+        }
+      },
+      "group": "build",
+      "problemMatcher": ["$gcc"],
+      "dependsOn": ["CMake Configure"]
+    }
+  ]
 }
 ```
 
