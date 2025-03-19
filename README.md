@@ -71,7 +71,7 @@ By default, Clangd looks a for file called `compile_commands.json` inside the bu
 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 ```
 
-Remember to reload vscode when you recreate the file `compile_commands.json`. 
+Remember to reload vscode when you recreate the file `compile_commands.json`.
 
 With Clangd, the build command in the `tasks.json` file may look something like this:
 
@@ -120,9 +120,9 @@ You also need the following information in your VSCode `settings.json` file to y
 ```bash
   "clangd.path": "<path-to-clangd-binary>",
   "clangd.arguments": [
-    "-log=verbose", 
-    "-pretty", 
-    "--background-index", 
+    "-log=verbose",
+    "-pretty",
+    "--background-index",
     "--compile-commands-dir=<path-to-compile-commands-folder>"
 ```
 
@@ -215,19 +215,19 @@ A full example build task with this included is given below:
   "label": "Debug build",
   "command": "source /opt/ros/rolling/setup.bash && nice colcon build --symlink-install --mixin debug compile-commands ccache --build-base build_dbg --install-base install_dbg && source install_dbg/setup.bash && cd ${workspaceFolder} && source .vscode/generate_env.sh && echo Debug build complete",
   "options": {
-      "cwd": "${workspaceFolder}/../.."
+    "cwd": "${workspaceFolder}/../.."
   },
   "group": {
-      "kind": "build",
-      "isDefault": true
+    "kind": "build",
+    "isDefault": true
   },
   "presentation": {
-      "echo": true,
-      "reveal": "always",
-      "focus": true,
-      "panel": "shared",
-      "showReuseMessage": true,
-      "clear": true
+    "echo": true,
+    "reveal": "always",
+    "focus": true,
+    "panel": "shared",
+    "showReuseMessage": true,
+    "clear": true
   }
 }
 ```
@@ -269,15 +269,16 @@ As shown previously, if you run the `colcon` command from VSCode, you need to cr
       "group": {
         "kind": "build",
         "isDefault": true
+      }
     },
     {
       "label": "colcon: clean",
       "type": "shell",
       "command": [
-          "cd ${env:MY_PROJECT};",
-          "rm -rf build;",
-          "rm -rf install;",
-          "rm -rf log;"
+        "cd ${env:MY_PROJECT};",
+        "rm -rf build;",
+        "rm -rf install;",
+        "rm -rf log;"
       ]
     },
     {
@@ -287,7 +288,7 @@ As shown previously, if you run the `colcon` command from VSCode, you need to cr
         "cd project-workspace;",
         "source /opt/ros/humble/setup.bash;",
         "source install/setup.bash;",
-        "colcon test", 
+        "colcon test",
         "--packages-select <package-name>",
         "--event-handlers console_direct+;"
       ]
@@ -521,10 +522,7 @@ If you use Pylint, you may find passing global parameters useful:
 
 ```json
 {
-    "pylint.args": [
-        "--max-line-length=120",
-        "disable=no-member"
-    ]
+  "pylint.args": ["--max-line-length=120", "disable=no-member"]
 }
 ```
 
@@ -603,31 +601,31 @@ my_node = launch_ros.actions.Node(
 
 A more general approach to connect to a running node, either C++ or Python, is described below.
 
-If you have node started using the prefix param and running inside a GDB server, you can directly connect to the GDB server using the following  configuration.
+If you have node started using the prefix param and running inside a GDB server, you can directly connect to the GDB server using the following configuration.
 
 Additionally, when you start a node inside a GDB server, the node waits on the first breakpoint before continuing execution.
 
 ```json
 {
-    "name": "Connect to gdbserver",
-    "type": "cppdbg",
-    "request": "launch",
-    "program": "${workspaceFolder}/path-to-node-executable",
-    "args": [],
-    "stopAtEntry": false,
-    "cwd": "${workspaceFolder}",
-    "environment": [],
-    "externalConsole": false,
-    "MIMode": "gdb",
-    "miDebuggerServerAddress": "localhost:3000",
-    "miDebuggerPath": "/usr/bin/gdb",
-    "setupCommands": [
-        {
-            "description": "Enable pretty-printing for gdb",
-            "text": "-enable-pretty-printing",
-            "ignoreFailures": true
-        }
-    ]
+  "name": "Connect to gdbserver",
+  "type": "cppdbg",
+  "request": "launch",
+  "program": "${workspaceFolder}/path-to-node-executable",
+  "args": [],
+  "stopAtEntry": false,
+  "cwd": "${workspaceFolder}",
+  "environment": [],
+  "externalConsole": false,
+  "MIMode": "gdb",
+  "miDebuggerServerAddress": "localhost:3000",
+  "miDebuggerPath": "/usr/bin/gdb",
+  "setupCommands": [
+    {
+      "description": "Enable pretty-printing for gdb",
+      "text": "-enable-pretty-printing",
+      "ignoreFailures": true
+    }
+  ]
 }
 ```
 
@@ -684,7 +682,6 @@ You may have to add your tests manually by appending the following lines to your
   "python.testing.pytestPath": "/usr/bin/pytest-3"
 ```
 
-
 If you do not need to debug your tests, you can always run `colcon test` as described previously.
 
 ### Code coverage
@@ -696,7 +693,7 @@ The Test Explorer extension can also calculate test code coverage. You may want 
   "python.testing.unittestEnabled": false,
   "python.testing.cwd": "${workspaceFolder}/path-to-test-folder/",
   "python.testing.pytestArgs": [
-    "--cov", 
+    "--cov",
     "${workspaceFolder}"
   ]
 ```
@@ -770,7 +767,7 @@ Additionally, you can add a `.gitignore` to that project itself and unignore any
 
 - [Git History](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory): View git log, file history, compare branches or commits.
 
-- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles)): Extension for Markdown advanced editing. It adds a document outline, automatic table of contents, etc.
+- [Markdown All in One](<https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles)>): Extension for Markdown advanced editing. It adds a document outline, automatic table of contents, etc.
 
 - [Markdown Preview Github Style](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles): Better Markdown preview.
 
@@ -796,7 +793,7 @@ Additionally, you can add a `.gitignore` to that project itself and unignore any
 
 - [Microsoft Black Formatter](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter): An automatic Python code formatted.
 
-- [Microsoft MyPi Checker](https://marketplace.visualstudio.com/items?itemName=ms-python.mypy-type-checker): This is a static type checker for Python. It analyzes your Python code and checks for type consistency based on the type hints (annotations) you add to your code. 
+- [Microsoft MyPi Checker](https://marketplace.visualstudio.com/items?itemName=ms-python.mypy-type-checker): This is a static type checker for Python. It analyzes your Python code and checks for type consistency based on the type hints (annotations) you add to your code.
 
 - [Microsoft Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter): Extension to edit and run Jupyter notebooks.
 
