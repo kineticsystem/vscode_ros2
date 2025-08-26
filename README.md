@@ -46,9 +46,9 @@ For this guide, it is presumed that Visual Studio Code has already been installe
 ~/.vscode
 ```
 
-Upon launching VSCode, install the [Microsoft ROS extension](https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros), followed by a restart of the editor.
+Upon launching VSCode, install the [Robotics Developer Environment](https://marketplace.visualstudio.com/items?itemName=Ranch-Hand-Robotics.rde-pack), followed by a restart of the editor.
 
-<img height="80px" src="img/ros_extension.svg">
+<img height="80px" src="img/rde_extension.svg">
 
 This extension will facilitate the installation of requisite dependencies such as [Microsoft C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) and [Microsoft Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) extensions.
 
