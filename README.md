@@ -13,6 +13,7 @@ The document also delves into specific techniques for working in C++ and Python 
 - [Remote development over SSH](#remote-development-over-ssh)
 - [Developmenti in Docker container](#developmenti-in-docker-container)
 - [Development in remote Docker container](#development-in-remote-docker-container)
+- [Sonar Qube Extension](#sonar-qube-extension)
 - [Sourcing your ROS Dependencies](#sourcing-your-ros-dependencies)
 - [How to build with Colcon](#how-to-build-with-colcon)
 - [How to build with CMake](#how-to-build-with-cmake)
@@ -153,6 +154,30 @@ To achive this, you must install an extension called [Microsoft Remote Developme
 <img height="80px" src="img/remote_development.svg">
 
 First you connect to the remote machine using Microsoft Remote SSH, an then you connect to the running container using this extension.
+
+## Sonar Qube Extension
+
+[Sonar Qube](https://marketplace.visualstudio.com/items?itemName=SonarSource.sonarlint-vscode) is a useful extension to install in VSCode.
+
+It requires JDK 17, and some extra configuration when used inside a docker container.
+
+First, install the JDK in the container:
+
+```bash
+sudo apt install openjdk-17-jdk
+```
+
+Second, open the remote settings file with the command palette. Press  CTRL+P and type "Preferences: Open Remote Settings (JSON)".
+
+Add the following to the remote settings file:
+
+```json
+{
+  "sonarlint.ls.javaHome": "/usr/lib/jvm/java-17-openjdk-amd64"
+}
+```
+
+Finally, restart VSCode.
 
 ## Sourcing your ROS Dependencies
 
